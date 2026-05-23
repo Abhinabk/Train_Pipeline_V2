@@ -35,8 +35,6 @@ logs/
 # Database files
 *.db
 *.duckdb
-/storage
-
 # Temporary files
 tmp/
 temp/
