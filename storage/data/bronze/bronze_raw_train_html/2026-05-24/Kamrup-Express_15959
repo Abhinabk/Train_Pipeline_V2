@@ -51,7 +51,7 @@
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
     var holiDay = {20260101:'New Year',20260113:'Lohri',20260114:'Makar Sankranti',20260118:'Mauni Amavasya',20260123:'Vasant Panchami',20260126:'Republic Day',20260215:'Mahashivratri',20260217:'Ramadan Begins',20260304:'Holi',20260320:'Jumat-ul-Wida / Eid-Ul-Fitr',20260326:'Ram Navmi',20260331:'Mahavir Jayanti',20260402:'Hanuman Jayanti',20260403:'Good Friday',20260405:'Easter',20260414:'Baishakhi / Hindi New Year / Ambedkar Jayanti / Bohag Bihu',20260419:'Akshay Tritiya',20260502:'Budhdha Purnima',20260527:'Eid-Ul-Adha',20260626:'Muharram',20260716:'Rath Yatra',20260729:'Guru Purnima',20260817:'Naag Panchami',20260815:'Independence Day',20260826:'Onam / Milad-un-Nabi / Id-e-Milab',20260828:'Raksha Bandhan',20260904:'Krishna Janmashtami',20260914:'Ganesh Chaturthi',20261002:'Gandhi Jayanti',20261011:'Navratra Begins',20261019:'Durga Ashtami / Maha Navami',20261020:'Dussehra',20261029:'Karva Chauth',20261106:'Dhan Teras',20261107:'Kali Puja',20261108:'Diwali / Narak Chaturdasi',20261110:'Govardhan Puja',20261111:'Bhai Duj',20261115:'Chhath Puja',20261124:'Guru Nanak Jayanti',20261204:'Hanukkah Begins',20261212:'Hanukkah Ends',20261225:'Christmas Day'};
-    var currenttime = 'May 22, 2026 22:13:32';
+    var currenttime = 'May 24, 2026 21:43:41';
     var cdnprefix = 'https://etrain.info/';
     var sisterDomains = ['https://tripozo.com','https://m.etrain.info'];
     var TPZ_API_PREFIX = 'https://www.tripozo.com/api/v1/'; var TPZ_WWW_PREFIX = 'https://www.tripozo.com/'; 
@@ -266,7 +266,7 @@
       <!-- <div class="header">
         <div class="flexRow">
           <div class="flexG1"><marquee class="flexCol bold" behavior="alternate" scrollamount="2">Welcome to etrain.info :-)</marquee></div>
-          <div style="display:flex;justify-content:flex-end;width:165px" id="servertime">22-May-2026 22:13:32 IST</div>
+          <div style="display:flex;justify-content:flex-end;width:165px" id="servertime">24-May-2026 21:43:41 IST</div>
         </div>
       </div> -->
       <div id="upperdata"></div>
@@ -370,7 +370,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:88.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:10%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:5.7731597280508E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:88.89%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:9.96%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.3322676295502E-15%"></div>
 							</div>
 						 </a>
 						<a href="#ABKA" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -381,7 +381,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:43.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:55%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.3322676295502E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:43.68%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:55.17%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.3322676295502E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NDAE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -392,7 +392,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:32.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.2172489379009E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:32.57%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.9%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.53%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.1102230246252E-15%"></div>
 							</div>
 						 </a>
 						<a href="#KWAE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -403,18 +403,18 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:63.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:35%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.3322676295502E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:63.98%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:34.87%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:5.7731597280508E-15%"></div>
 							</div>
 						 </a>
 						<a href="#SALE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								SALAR (SALE)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 21 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:39.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:59.23%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:5.7731597280508E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:39.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:59%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.3322676295502E-15%"></div>
 							</div>
 						 </a>
 						<a href="#KGLE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -425,7 +425,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:20.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:77.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.2172489379009E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:20.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:77.78%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.53%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.1102230246252E-15%"></div>
 							</div>
 						 </a>
 						<a href="#AZ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -436,7 +436,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:74.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.85%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-5.3290705182008E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:74.33%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.75%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#JRLE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -447,7 +447,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:84.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:13.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-5.3290705182008E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:84.67%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:13.41%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NILE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -458,7 +458,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:75%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.08%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.7763568394003E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:75.48%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:22.61%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000003%"></div>
 							</div>
 						 </a>
 						<a href="#DGLE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -469,7 +469,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:70.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:26.92%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:2.2204460492503E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.26%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:26.44%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.3%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-6.2172489379009E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NFK" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -480,18 +480,18 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:87.31%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:10.38%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-3.1086244689504E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:86.97%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:10.73%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.3%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:8.8817841970013E-16%"></div>
 							</div>
 						 </a>
 						<a href="#MLDT" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								MALDA TOWN (MLDT)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 10 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 11 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:93.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:4.62%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.2172489379009E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:93.1%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:4.6%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.3%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.2172489379009E-15%"></div>
 							</div>
 						 </a>
 						<a href="#SM" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -502,7 +502,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:75.38%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:22.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:5.7731597280508E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:75.1%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:22.22%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.68%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.6613381477509E-15%"></div>
 							</div>
 						 </a>
 						<a href="#HCR" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -513,29 +513,29 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:69.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:28.08%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000003%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:69.35%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:27.97%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.68%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.6613381477509E-15%"></div>
 							</div>
 						 </a>
 						<a href="#BOE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BARSOI JN (BOE)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 23 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:35.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:29.23%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:33.46%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:36.02%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:29.12%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:1.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:32.94%"></div>
 							</div>
 						 </a>
 						<a href="#KNE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								KISHANGANJ (KNE)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 29 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 30 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:29.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:29.5%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.13%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.36%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000004%"></div>
 							</div>
 						 </a>
 						<a href="#AUB" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -546,469 +546,469 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:11.15%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:79.62%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:9.23%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.0658141036402E-14%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:11.11%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:79.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:9.58%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NJP" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW JALPAIGURI (NJP)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 21 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:61.15%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:33.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000001%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:60.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:33.33%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.75%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#JPE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								JALPAIGURI ROAD (JPE)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 21 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:65.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:27.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:2.6645352591004E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:65.52%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:27.59%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.9%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.0099999999999962%"></div>
 							</div>
 						 </a>
 						<a href="#NMX" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW MAYNAGURI (NMX)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 27 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 28 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:44.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.23%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:6.2172489379009E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:44.06%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.04%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.9%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#DQG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								DHUPGURI (DQG)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 31 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 32 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:33.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:59.23%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:7.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-4.4408920985006E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:33.33%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:59%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:7.66%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000002%"></div>
 							</div>
 						 </a>
 						<a href="#FLK" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								FALAKATA (FLK)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 24 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 25 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:51.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:43.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-2.6645352591004E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:51.72%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:43.3%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.98%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NCB" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW COOCH BEHAR (NCB)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 20 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 21 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:65.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:30.38%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:3.85%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:4.8849813083507E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:65.52%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:30.27%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.21%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:4.4408920985006E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NOQ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW ALIPURDAUR (NOQ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 23 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:60%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:35.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.23%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-3.5527136788005E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:59.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:35.63%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.6%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-5.3290705182008E-15%"></div>
 							</div>
 						 </a>
 						<a href="#KAMG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								KAMAKHYAGURI (KAMG)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 26 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 27 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:53.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:40.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-4.4408920985006E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:53.64%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:40.61%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.75%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#GOGH" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								GOSSAIGAON HAT (GOGH)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 39 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 41 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:12.31%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:33.46%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:12.64%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.13%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:7.28%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:32.95%"></div>
 							</div>
 						 </a>
 						<a href="#FKM" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								FAKIRAGRAM JN (FKM)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 43 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 44 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:77.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.66%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:77.01%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:15.33%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#KOJ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								KOKRAJHAR (KOJ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 43 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 44 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:9.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:76.92%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:13.85%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-5.3290705182008E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:9.58%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:76.25%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:14.18%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.009999999999998%"></div>
 							</div>
 						 </a>
 						<a href="#NBQ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW BONGAIGAON (NBQ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 19 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 20 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.54%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.85%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000008%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.26%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.75%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.98%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999945%"></div>
 							</div>
 						 </a>
 						<a href="#BNGN" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BONGAIGAON (BNGN)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 19 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 20 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.54%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.26%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:23.37%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.36%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999936%"></div>
 							</div>
 						 </a>
 						<a href="#BJF" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BIJNI (BJF)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 14 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 19 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:11.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:6.92%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:0.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.78%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:12.26%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:6.9%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:0.77%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.07%"></div>
 							</div>
 						 </a>
 						<a href="#SBE" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								SORBHOG JN (SBE)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 24 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 25 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:58.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:35.38%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999962%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:58.24%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:35.25%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.51%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#BPRD" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BARPETA ROAD (BPRD)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 25 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 26 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:55.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:38.08%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:55.56%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:37.93%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.51%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#SPQ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								SORUPETA (SPQ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 28 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 33 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:5%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:13.85%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:0.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.77%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:4.98%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:14.18%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:0.77%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.07%"></div>
 							</div>
 						 </a>
 						<a href="#PBL" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								PATHSALA (PBL)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 29 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 30 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:41.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:51.54%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-8.8817841970013E-16%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:41.38%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:51.72%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:6.9%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.7763568394003E-15%"></div>
 							</div>
 						 </a>
 						<a href="#TIHU" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								TIHU (TIHU)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 31 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 33 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:38.08%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:53.85%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.08%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.0099999999999998%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:37.55%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:54.02%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.43%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#NLV" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NALBARI (NLV)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 33 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 34 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:33.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:57.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.46%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:33.33%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:57.85%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.81%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999998%"></div>
 							</div>
 						 </a>
 						<a href="#RNY" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								RANGIYA JN (RNY)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 32 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 33 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:41.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.62%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.46%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:41.38%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.81%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.81%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-5.3290705182008E-15%"></div>
 							</div>
 						 </a>
 						<a href="#KYQ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								KAMAKHYA (KYQ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 21 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 22 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:64.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:31.15%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-2.6645352591004E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:63.98%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:31.03%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:4.98%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000002%"></div>
 							</div>
 						 </a>
 						<a href="#GHY" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								GUWAHATI (GHY)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 26 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 27 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:48.85%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:45.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-4.4408920985006E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:49.04%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:45.21%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:5.75%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#CPK" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								CHAPARMUKH JN (CPK)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 30 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 31 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:44.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.08%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.0099999999999998%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:44.06%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.51%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:8.43%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#KWM" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								KAMPUR (KWM)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 38 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 43 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:3.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:13.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.77%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:3.45%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:13.79%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:2.68%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.08%"></div>
 							</div>
 						 </a>
 						<a href="#HJI" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								HOJAI (HJI)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 36 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 38 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:36.15%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000005%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:36.02%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:47.51%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.48%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000002%"></div>
 							</div>
 						 </a>
 						<a href="#LKA" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								LANKA (LKA)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 38 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 39 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:38.08%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:45%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:37.93%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:44.44%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:17.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000002%"></div>
 							</div>
 						 </a>
 						<a href="#LMG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								LUMDING JN (LMG)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 46 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 47 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:19.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:61.54%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:18.85%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000005%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:19.54%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:61.3%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:19.16%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.0658141036402E-14%"></div>
 							</div>
 						 </a>
 						<a href="#DPU" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								DIPHU (DPU)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 51 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 52 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:12.31%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:21.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:12.26%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:65.52%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:22.22%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#DMV" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								DIMAPUR (DMV)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 52 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 54 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:13.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:62.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:23.85%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:13.03%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:62.84%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:24.14%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000005%"></div>
 							</div>
 						 </a>
 						<a href="#SZR" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								SARUPATHAR (SZR)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 48 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 50 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:15.77%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:67.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:15.33%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:67.43%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:17.24%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						<a href="#BXP" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BARPATHAR (BXP)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 49 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 50 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:14.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:69.23%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.15%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:14.18%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:69.35%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:16.48%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000002%"></div>
 							</div>
 						 </a>
 						<a href="#FKG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								FURKATING JN (FKG)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 23 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 24 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:18.08%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:10%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:71.65%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:18.01%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:10.34%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-7.105427357601E-15%"></div>
 							</div>
 						 </a>
 						<a href="#MXN" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								MARIANI JN (MXN)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 45 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 46 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:28.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.62%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:21.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:27.97%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:49.81%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:22.22%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#AGI" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								AMGURI (AGI)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 55 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 56 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:3.46%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:73.46%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:23.08%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:1.4210854715202E-14%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:3.07%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:73.56%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:23.37%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						<a href="#SLGR" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								SIMALUGURI JN (SLGR)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 45 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 46 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:14.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:68.08%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:17.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-0.010000000000002%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:14.18%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:68.2%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:17.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.0658141036402E-14%"></div>
 							</div>
 						 </a>
 						<a href="#BOJ" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								BHOJO (BOJ)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 50 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 51 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:9.23%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:71.15%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:19.62%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:-1.0658141036402E-14%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:8.81%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:71.26%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:19.92%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999909%"></div>
 							</div>
 						 </a>
 						<a href="#NAM" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NAMRUP (NAM)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 53 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 54 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:70.77%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:21.54%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:7.105427357601E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.28%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:70.88%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:21.84%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						<a href="#NHK" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NAHARKATIYA (NHK)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 54 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 55 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:70%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:22.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:7.28%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:70.11%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:22.61%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#DJG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								DULIAJAN (DJG)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 55 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 57 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:6.92%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:67.69%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:25.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.010000000000002%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:6.51%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:67.82%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:25.67%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
 							</div>
 						 </a>
 						<a href="#NTSK" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								NEW TINSUKIA JN (NTSK)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 49 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 50 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:17.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:62.31%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:20%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:17.24%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:62.45%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:20.31%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						<a href="#CHB" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
 							<div>
 								CHABUA (CHB)
 								<div class="inlineblock fltright">
-									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 41 Min's</div>
+									<div class="inlineblock pdl5"><b>Avg. Delay:</b> 45 Min's</div>
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:4.62%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:11.15%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:3.46%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.77%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:4.6%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:11.49%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:3.83%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:80.08%"></div>
 							</div>
 						 </a>
 						<a href="#DBRG" etitle="<%showRunStatStn(this)%>" class="runStatStn blocklink rnd5">
@@ -1019,7 +1019,7 @@
 								</div>
 							</div>
 							<div class="nowrap fullw">
-								<div class="inlineblock" style="background-color:#008000;height:20px;width:72.69%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:16.92%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:10.38%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:0.0099999999999998%"></div>
+								<div class="inlineblock" style="background-color:#008000;height:20px;width:72.41%"></div><div class="inlineblock" style="background-color:#ffa500;height:20px;width:16.86%"></div><div class="inlineblock" style="background-color:#ff0000;height:20px;width:10.73%"></div><div class="inlineblock" style="background-color:#808080;height:20px;width:3.5527136788005E-15%"></div>
 							</div>
 						 </a>
 						</td></tr>
@@ -1043,9 +1043,8 @@
 						document.head.appendChild(s);
 						
 						et.rsStat = [];
-						et.rsStat.primaryData = [ ['Stations','Right Time', 'Slight Delay', 'Significant Delay', 'Cancelled/Unknown', {'type': 'string', 'role': 'tooltip', 'p': {'html': true}}],['HWH', 255, 3, 2, 0, 6.2],['BDC', 231, 26, 3, 0, 11],['ABKA', 114, 143, 3, 0, 20.2],['NDAE', 85, 171, 4, 0, 22.5],['KWAE', 166, 91, 3, 0, 16.2],['SALE', 103, 154, 3, 0, 21.5],['KGLE', 54, 202, 4, 0, 26.2],['AZ', 193, 62, 5, 0, 12.8],['JRLE', 220, 35, 5, 0, 10.3],['NILE', 195, 60, 5, 0, 14.6],['DGLE', 184, 70, 6, 0, 15.9],['NFK', 227, 27, 6, 0, 10.4],['MLDT', 243, 12, 5, 0, 9.8],['SM', 196, 58, 6, 0, 15.7],['HCR', 181, 73, 6, 0, 17.6],['BOE', 93, 76, 4, 87, 21.6],['KNE', 76, 171, 13, 0, 29],['AUB', 29, 207, 24, 0, 37.5],['NJP', 159, 87, 14, 0, 20.8],['JPE', 171, 72, 17, 0, 20.6],['NMX', 115, 128, 17, 0, 26.8],['DQG', 87, 154, 19, 0, 31],['FLK', 135, 113, 12, 0, 24.1],['NCB', 171, 79, 10, 0, 19.5],['NOQ', 156, 93, 11, 0, 21.8],['KAMG', 140, 106, 14, 0, 25.6],['GOGH', 32, 123, 18, 87, 39.3],['FKM', 20, 201, 39, 0, 43.2],['KOJ', 24, 200, 36, 0, 42.6],['NBQ', 186, 62, 12, 0, 18.6],['BNGN', 186, 61, 13, 0, 19],['BJF', 31, 18, 1, 210, 13.8],['SBE', 152, 92, 16, 0, 23.6],['BPRD', 145, 99, 16, 0, 24.6],['SPQ', 13, 36, 1, 210, 28.2],['PBL', 109, 134, 17, 0, 29],['TIHU', 99, 140, 21, 0, 31.4],['NLV', 88, 150, 22, 0, 32.5],['RNY', 109, 129, 22, 0, 32.3],['KYQ', 167, 81, 12, 0, 20.8],['GHY', 127, 119, 14, 0, 25.8],['CPK', 116, 123, 21, 0, 29.5],['KWM', 9, 35, 6, 210, 37.5],['HJI', 94, 124, 42, 0, 36.3],['LKA', 99, 117, 44, 0, 37.8],['LMG', 51, 160, 49, 0, 45.6],['DPU', 32, 171, 57, 0, 50.5],['DMV', 35, 163, 62, 0, 52.2],['SZR', 41, 175, 44, 0, 48],['BXP', 38, 180, 42, 0, 48.9],['FKG', 187, 47, 26, 0, 22.7],['MXN', 74, 129, 57, 0, 45.2],['AGI', 9, 191, 60, 0, 54.6],['SLGR', 38, 177, 45, 0, 45.4],['BOJ', 24, 185, 51, 0, 49.8],['NAM', 20, 184, 56, 0, 53.1],['NHK', 20, 182, 58, 0, 53.8],['DJG', 18, 176, 66, 0, 55.4],['NTSK', 46, 162, 52, 0, 48.7],['CHB', 12, 29, 9, 210, 40.5],['DBRG', 189, 44, 27, 0, 13.7]];
+						et.rsStat.primaryData = [ ['Stations','Right Time', 'Slight Delay', 'Significant Delay', 'Cancelled/Unknown', {'type': 'string', 'role': 'tooltip', 'p': {'html': true}}],['HWH', 256, 3, 2, 0, 6.2],['BDC', 232, 26, 3, 0, 11],['ABKA', 114, 144, 3, 0, 20.2],['NDAE', 85, 172, 4, 0, 22.6],['KWAE', 167, 91, 3, 0, 16],['SALE', 104, 154, 3, 0, 21.4],['KGLE', 54, 203, 4, 0, 26.2],['AZ', 194, 62, 5, 0, 12.8],['JRLE', 221, 35, 5, 0, 10.3],['NILE', 197, 59, 5, 0, 14.6],['DGLE', 186, 69, 6, 0, 16],['NFK', 227, 28, 6, 0, 10.3],['MLDT', 243, 12, 6, 0, 10.5],['SM', 196, 58, 7, 0, 16.3],['HCR', 181, 73, 7, 0, 18.4],['BOE', 94, 76, 5, 86, 22.6],['KNE', 77, 170, 14, 0, 29.8],['AUB', 29, 207, 25, 0, 38.3],['NJP', 159, 87, 15, 0, 21.7],['JPE', 171, 72, 18, 0, 21.5],['NMX', 115, 128, 18, 0, 27.8],['DQG', 87, 154, 20, 0, 32],['FLK', 135, 113, 13, 0, 25],['NCB', 171, 79, 11, 0, 20.5],['NOQ', 156, 93, 12, 0, 23],['KAMG', 140, 106, 15, 0, 26.6],['GOGH', 33, 123, 19, 86, 40.6],['FKM', 20, 201, 40, 0, 44.1],['KOJ', 25, 199, 37, 0, 43.6],['NBQ', 186, 62, 13, 0, 19.6],['BNGN', 186, 61, 14, 0, 20],['BJF', 32, 18, 2, 209, 18.6],['SBE', 152, 92, 17, 0, 24.7],['BPRD', 145, 99, 17, 0, 25.8],['SPQ', 13, 37, 2, 209, 32.8],['PBL', 108, 135, 18, 0, 30],['TIHU', 98, 141, 22, 0, 32.5],['NLV', 87, 151, 23, 0, 33.5],['RNY', 108, 130, 23, 0, 33.3],['KYQ', 167, 81, 13, 0, 21.8],['GHY', 128, 118, 15, 0, 26.8],['CPK', 115, 124, 22, 0, 30.6],['KWM', 9, 36, 7, 209, 43.2],['HJI', 94, 124, 43, 0, 37.6],['LKA', 99, 116, 46, 0, 39.3],['LMG', 51, 160, 50, 0, 46.9],['DPU', 32, 171, 58, 0, 51.8],['DMV', 34, 164, 63, 0, 53.5],['SZR', 40, 176, 45, 0, 49.6],['BXP', 37, 181, 43, 0, 50.3],['FKG', 187, 47, 27, 0, 24],['MXN', 73, 130, 58, 0, 46.4],['AGI', 8, 192, 61, 0, 55.9],['SLGR', 37, 178, 46, 0, 46.3],['BOJ', 23, 186, 52, 0, 50.9],['NAM', 19, 185, 57, 0, 53.8],['NHK', 19, 183, 59, 0, 54.9],['DJG', 17, 177, 67, 0, 56.7],['NTSK', 45, 163, 53, 0, 49.6],['CHB', 12, 30, 10, 209, 44.7],['DBRG', 189, 44, 28, 0, 14.4]];
 						et.rsStat.tooltipData = [['Date',{'type':'number','label':'HWH'},{'type':'number','label':'BDC'},{'type':'number','label':'ABKA'},{'type':'number','label':'NDAE'},{'type':'number','label':'KWAE'},{'type':'number','label':'SALE'},{'type':'number','label':'KGLE'},{'type':'number','label':'AZ'},{'type':'number','label':'JRLE'},{'type':'number','label':'NILE'},{'type':'number','label':'DGLE'},{'type':'number','label':'NFK'},{'type':'number','label':'MLDT'},{'type':'number','label':'SM'},{'type':'number','label':'HCR'},{'type':'number','label':'BOE'},{'type':'number','label':'KNE'},{'type':'number','label':'AUB'},{'type':'number','label':'NJP'},{'type':'number','label':'JPE'},{'type':'number','label':'NMX'},{'type':'number','label':'DQG'},{'type':'number','label':'FLK'},{'type':'number','label':'NCB'},{'type':'number','label':'NOQ'},{'type':'number','label':'KAMG'},{'type':'number','label':'GOGH'},{'type':'number','label':'FKM'},{'type':'number','label':'KOJ'},{'type':'number','label':'NBQ'},{'type':'number','label':'BNGN'},{'type':'number','label':'BJF'},{'type':'number','label':'SBE'},{'type':'number','label':'BPRD'},{'type':'number','label':'SPQ'},{'type':'number','label':'PBL'},{'type':'number','label':'TIHU'},{'type':'number','label':'NLV'},{'type':'number','label':'RNY'},{'type':'number','label':'KYQ'},{'type':'number','label':'GHY'},{'type':'number','label':'CPK'},{'type':'number','label':'KWM'},{'type':'number','label':'HJI'},{'type':'number','label':'LKA'},{'type':'number','label':'LMG'},{'type':'number','label':'DPU'},{'type':'number','label':'DMV'},{'type':'number','label':'SZR'},{'type':'number','label':'BXP'},{'type':'number','label':'FKG'},{'type':'number','label':'MXN'},{'type':'number','label':'AGI'},{'type':'number','label':'SLGR'},{'type':'number','label':'BOJ'},{'type':'number','label':'NAM'},{'type':'number','label':'NHK'},{'type':'number','label':'DJG'},{'type':'number','label':'NTSK'},{'type':'number','label':'CHB'},{'type':'number','label':'DBRG'}]
-,[new Date(2025,4,17),0,0,3,5,4,10,13,1,4,16,18,13,6,2,2,null,31,37,12,0,11,15,3,0,0,8,null,20,26,1,3,null,4,4,null,6,6,4,1,0,19,8,null,20,16,22,17,12,8,9,0,3,15,0,9,9,8,8,7,null,-39]
 ,[new Date(2025,4,18),0,0,7,12,21,23,25,9,23,25,25,10,0,0,1,null,25,30,3,1,10,16,6,0,0,9,null,23,21,12,16,null,17,17,null,17,16,15,10,13,0,18,null,13,14,37,36,34,28,28,0,0,29,14,28,30,31,31,27,null,-4]
 ,[new Date(2025,4,20),0,7,11,12,13,18,28,13,12,16,16,2,0,0,0,null,15,23,0,0,9,13,1,1,7,16,null,23,24,1,4,null,4,5,null,5,5,5,10,18,6,26,null,24,20,26,25,23,16,17,0,19,17,3,17,18,18,18,15,null,-25]
 ,[new Date(2025,4,21),0,4,9,50,36,40,47,62,61,65,66,61,47,46,46,null,65,72,85,104,130,210,199,228,222,231,null,239,237,212,214,null,215,214,null,214,214,212,207,189,175,189,null,186,183,182,179,185,181,181,161,159,157,141,154,172,173,173,166,null,123]
@@ -1305,6 +1304,8 @@
 ,[new Date(2026,4,12),4,11,23,25,19,21,27,22,8,15,16,6,0,3,9,41,43,55,50,47,47,46,35,30,33,32,46,52,50,11,10,13,21,24,27,32,34,36,38,8,8,18,23,39,48,35,37,40,29,29,13,65,61,46,43,47,48,49,45,45,1]
 ,[new Date(2026,4,13),1,2,25,27,21,21,29,18,7,10,12,15,11,12,13,18,19,32,13,10,27,25,14,10,11,11,19,23,20,8,5,7,17,18,22,28,29,29,33,10,21,31,37,51,53,37,35,33,27,27,0,36,36,20,18,20,21,23,16,16,-24]
 ,[new Date(2026,4,14),1,9,18,17,4,5,12,0,1,4,7,20,2,6,7,7,4,14,6,8,26,26,21,9,11,9,17,26,23,0,0,2,7,8,12,17,19,19,19,0,23,39,45,61,63,55,53,54,45,45,23,35,32,18,14,16,16,16,9,7,39]
+,[new Date(2026,4,16),1,8,21,25,14,15,23,7,3,7,9,21,183,185,187,209,229,253,261,282,282,280,290,293,298,298,306,309,306,269,266,268,273,274,277,283,284,283,281,305,317,324,329,347,350,344,339,365,355,358,313,314,308,292,292,294,301,301,289,286,245]
+,[new Date(2026,4,17),0,0,9,10,0,0,7,1,0,4,5,0,0,13,14,11,13,27,1,0,1,0,8,3,5,4,14,17,14,7,3,7,12,14,16,22,24,27,28,0,8,36,42,60,64,51,55,58,46,49,2,40,42,29,26,28,29,30,18,16,-30]
 ];
 				
 						var rsStatShowStn;
