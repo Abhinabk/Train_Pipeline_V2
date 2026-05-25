@@ -1,15 +1,8 @@
 from pathlib import Path
-import pandas as pd
 
 
 def ensure_path(path: Path):
     path.mkdir(parents=True, exist_ok=True)
-
-
-def load(path_to_csv: Path, type: str):
-    if type == "csv":
-        if path_to_csv.is_file():
-            return pd.read_csv(path_to_csv)
 
 
 def save_html(full_path: Path, content: str):
