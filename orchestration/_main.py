@@ -3,7 +3,7 @@ from ingestion.etrain.create_session import create_session
 from orchestration.run_ingestion import run_train_ingestion
 from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.init_db import init_bronze_train_metadata
-from storage.local.local import load
+from storage.object_store.local import load
 
 session = create_session()
 

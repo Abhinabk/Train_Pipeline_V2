@@ -6,7 +6,7 @@ from config.settings import DUCK_DB_DATABASE
 load_dotenv()
 token = os.getenv("MOTHERDUCK_TOKEN")
 database_name = os.getenv("MOTHERDUCK_DATABASE_NAME")
-def get_connection(type="local"):
+def get_connection(type="motherduck"):
     if type == "local":
         DUCK_DB_DATABASE.parent.mkdir(parents=True,exist_ok=True)
         return duckdb.connect(str(DUCK_DB_DATABASE))
