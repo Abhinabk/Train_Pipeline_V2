@@ -22,6 +22,8 @@ def run_train_ingestion(session,con,train_no,train_name):
         result = fetch_train_history(url,session,train_no,safe_train_name,storage="s3")
         metadata.update(result)
         metadata["success"] = True
+        bronze_logger.info(f"{metadata.get('train_name',None)}_{metadata.get('train_no',None)}\
+                            ingested-> {result['file_path']}")
 
     except requests.exceptions.RequestException as err:
         metadata['success'] = False
