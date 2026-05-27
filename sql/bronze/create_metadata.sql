@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS bronze.train_metadata(
     train_name VARCHAR,
     source_url VARCHAR,
     file_path VARCHAR,
-    fetched_at TIMESTAMP,
     response_status_code INT,
     success BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

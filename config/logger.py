@@ -1,4 +1,6 @@
 
+import sys
+
 from loguru import logger
 from config.settings import LOG_DIR
 #getting duplicate logs withot this
@@ -7,6 +9,13 @@ logger.remove()
 bronze_logger = logger.bind(name="bronze")
 silver_logger = logger.bind(name="silver")
 gold_logger = logger.bind(name="gold")
+
+logger.level("SKIP", no=25, color="<yellow>")
+
+logger.add(
+    sys.stderr,
+    filter=lambda r: r["extra"].get("name") in ("bronze", "silver", "gold")
+)
 
 logger.add(
     LOG_DIR / "bronze.log",

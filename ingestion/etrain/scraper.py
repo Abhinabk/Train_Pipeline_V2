@@ -15,12 +15,12 @@ def fetch_train_history(url,session,train_no,train_name,year="1y",storage="local
     response = fetch_html(session, url)
     html = response.get('html',"")
     if storage == "local":
-        file_path = (BRONZE_HTML_DIR/f"{date.today()}_{train_name}_{train_no}.html")
+        file_path = BRONZE_HTML_DIR / str(date.today()) / f"{train_name}_{train_no}.html"
         save_html(file_path, html)     
       
     elif storage == "s3":
         #buck alraedy given in argument no need to append to key path
-        key = f"{S3_PREFIX_BRONZE_TRAIN}/{date.today()}_{train_name}_{train_no}.html"
+        key =  f"{S3_PREFIX_BRONZE_TRAIN}/{date.today()}/{train_name}_{train_no}.html"
         file_path = save_html_s3(S3_BUCKET,key,html)
 
     else:

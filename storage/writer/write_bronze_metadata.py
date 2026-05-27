@@ -1,5 +1,3 @@
-from datetime import datetime
-
 def insert_bronze_train_metadata(con, metadata: dict):
 
     con.execute(
@@ -9,19 +7,17 @@ def insert_bronze_train_metadata(con, metadata: dict):
             train_name,
             source_url,
             file_path,
-            fetched_at,
             response_status_code,
             success,
             error_message
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
         [
             metadata["train_no"],
             metadata["train_name"],
             metadata["source_url"],
             metadata["file_path"],
-            datetime.now(),
             metadata["response_status_code"],
             metadata["success"],
             metadata["error_message"],

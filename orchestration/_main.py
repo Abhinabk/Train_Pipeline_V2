@@ -16,4 +16,4 @@ with get_connection() as con: # type: ignore
     for rows in tqdm(df.itertuples(index=False), total=len(df), desc="Ingesting trains"): # type: ignore
         train_no = rows.number # type: ignore
         train_name = rows.name  # type: ignore
-        run_train_ingestion(session,con,train_no,train_name)
+        run_train_ingestion(session,con,str(train_no),str(train_name))

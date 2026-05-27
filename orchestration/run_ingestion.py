@@ -1,11 +1,16 @@
 from ingestion.etrain.build_url import build_train_url
 from ingestion.etrain.scraper import fetch_train_history
+from storage.duckdb.queries import check_existing_fetch
 from storage.writer.write_bronze_metadata import insert_bronze_train_metadata
 from config.logger import bronze_logger
 import requests
+from duckdb import DuckDBPyConnection
 
+def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no:str,train_name:str):
 
-def run_train_ingestion(session,con,train_no,train_name):
+    if check_existing_fetch(con,train_no):
+        bronze_logger.log('SKIP',f"{train_name}_{train_no} aready fetched today")
+        return
     url = build_train_url(train_no,train_name,time="1y") # type: ignore
     safe_train_name = train_name.strip().replace(" ", "-") # type: ignore
     #metadata template
@@ -22,7 +27,7 @@ def run_train_ingestion(session,con,train_no,train_name):
         result = fetch_train_history(url,session,train_no,safe_train_name,storage="s3")
         metadata.update(result)
         metadata["success"] = True
-        bronze_logger.info(f"{metadata.get('train_name',None)}_{metadata.get('train_no',None)}\
+        bronze_logger.success(f"{metadata.get('train_name',None)}_{metadata.get('train_no',None)}\
                             ingested-> {result['file_path']}")
 
     except requests.exceptions.RequestException as err:
