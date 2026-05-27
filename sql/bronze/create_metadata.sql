@@ -1,9 +1,9 @@
 CREATE SCHEMA IF NOT EXISTS bronze;
-CREATE SEQUENCE IF NOT EXISTS bronze.metadata_seq START 1;
+CREATE SEQUENCE IF NOT EXISTS bronze.train_metadata_seq START 1;
 
-CREATE TABLE IF NOT EXISTS bronze.metadata(
-    metadata_id BIGINT PRIMARY KEY DEFAULT nextval('bronze.metadata_seq'),
-    train_no INT,
+CREATE TABLE IF NOT EXISTS bronze.train_metadata(
+    metadata_id BIGINT PRIMARY KEY DEFAULT nextval('bronze.train_metadata_seq'),
+    train_no VARCHAR,
     train_name VARCHAR,
     source_url VARCHAR,
     file_path VARCHAR,

@@ -39,5 +39,7 @@ logs/
 tmp/
 temp/
 
+#DATA
+storage/data
 __pycache__/
 *.pyc
