@@ -19,7 +19,7 @@ def run_train_ingestion(session,con,train_no,train_name):
         "error_message":None
     }
     try:
-        result = fetch_train_history(url,session,train_no,safe_train_name)
+        result = fetch_train_history(url,session,train_no,safe_train_name,storage="s3")
         metadata.update(result)
         metadata["success"] = True
 
