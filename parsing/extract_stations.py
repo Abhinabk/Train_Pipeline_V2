@@ -1,3 +1,4 @@
+from storage.object_store.local import save_dataframe_as_csv
 from storage.object_store.s3 import get_files 
 from bs4 import BeautifulSoup
 from config.settings import CACHE_DIR
@@ -47,12 +48,12 @@ def get_fare_details(soup):
 
         result[train_class] = fare_breakdown
 
-    return result
+    save_dataframe_as_csv(CACHE_DIR/'csv'/'fare_details.csv',result,'Fare Type')
 
 
 if __name__ == "__main__":
     html = get_stations('15959')
-    dic = get_fare_details(html)
-    pprint.pprint(dic)
+    get_fare_details(html)
+    
         
     
