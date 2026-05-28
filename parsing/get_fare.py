@@ -1,8 +1,5 @@
 # Attribute meaning map
 from bs4 import BeautifulSoup
-
-from config.settings import CACHE_DIR
-from storage.object_store.local import save_dataframe_as_csv
 from storage.readers.load_html import get_station_html
 
 
@@ -37,7 +34,7 @@ def fare_details(soup:BeautifulSoup):
 
         result[train_class] = fare_breakdown
 
-    save_dataframe_as_csv(CACHE_DIR/'csv'/'fare_details.csv',result,'Fare Type')
+    return result
 
 if __name__ == "__main__":
     html = get_station_html('15959')
