@@ -2,7 +2,6 @@ from storage.object_store.local import save_dataframe_as_csv
 from storage.object_store.s3 import get_files 
 from bs4 import BeautifulSoup
 from config.settings import CACHE_DIR
-import pprint
 # Attribute meaning map
 FARE_ATTR_MAP = {
     "ad0":  "Adult (Normal)",
