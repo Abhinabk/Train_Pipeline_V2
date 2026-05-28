@@ -9,6 +9,8 @@ venv/
 .venv/
 env/
 
+#cache folder
+.cache 
 # Environment variables
 .env
 
