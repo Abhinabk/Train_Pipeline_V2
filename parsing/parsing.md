@@ -1,0 +1,12 @@
+## Mapping of fare codes to their meaning
+- "ad0":  "Adult (Normal)",
+- "ad1":  "Adult (Tatkal)",
+- "ch0":  "Child (Normal)",
+- "ch1":  "Child (Tatkal)",
+- "srf0": "Senior Female (Normal)",
+- "srf1": "Senior Female (Tatkal)",
+- "srm0": "Senior Male (Normal)",
+- "srm1": "Senior Male (Tatkal)"
+    - 0 suffix = Normal fare 
+    - 1 suffix = Tatkal fare
+- 2A,3A,SL,GN all comes row wise in order so can directly match their corresponding values so we can just emeurate with fare knowing it will ahve same length as train class
