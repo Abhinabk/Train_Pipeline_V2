@@ -16,6 +16,6 @@ def save_dataframe_as_csv(full_path: Path, content: dict,index_name:str|None=Non
     if index_name:
         df.index.name = index_name
         df.to_csv(full_path)
-        
+        return 
     df.to_csv(full_path,index=False)
 
