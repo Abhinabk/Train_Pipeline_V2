@@ -1,7 +1,9 @@
 # Attribute meaning map
+from bs4 import BeautifulSoup
+
 from config.settings import CACHE_DIR
 from storage.object_store.local import save_dataframe_as_csv
-from storage.readers.load_html import get_stations
+from storage.readers.load_html import get_station_html
 
 
 FARE_ATTR_MAP = {
@@ -15,7 +17,7 @@ FARE_ATTR_MAP = {
     "srm1": "Senior Male (Tatkal)",
 }
 
-def get_fare_details(soup):
+def fare_details(soup:BeautifulSoup):
     #train classes
     table = soup.find('table',class_='fullw nocps nolrborder')
     header_row = table.find('tr',class_='odd lighthead1')
@@ -38,6 +40,6 @@ def get_fare_details(soup):
     save_dataframe_as_csv(CACHE_DIR/'csv'/'fare_details.csv',result,'Fare Type')
 
 if __name__ == "__main__":
-    html = get_stations('15959')
-    get_fare_details(html)
+    html = get_station_html('15959')
+    fare_details(html)
     

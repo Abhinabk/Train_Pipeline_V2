@@ -3,7 +3,7 @@ from config.settings import CACHE_DIR
 from storage.object_store.s3 import get_files
 
 
-def get_stations(train_no:str):
+def get_station_html(train_no:str)->BeautifulSoup:
     cache_file = CACHE_DIR/f"{train_no}.html"
     if cache_file.is_file():
         html_file = cache_file.read_text(encoding='utf-8')
