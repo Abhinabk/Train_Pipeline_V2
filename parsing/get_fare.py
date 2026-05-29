@@ -14,7 +14,7 @@ FARE_ATTR_MAP = {
     "srm1": "Senior Male (Tatkal)",
 }
 
-def fare_details(soup:BeautifulSoup):
+def fare_details(soup:BeautifulSoup)->dict:
     #train classes
     table = soup.find('table',class_='fullw nocps nolrborder')
     header_row = table.find('tr',class_='odd lighthead1')
