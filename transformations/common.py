@@ -7,3 +7,6 @@ def wide_to_long(data:list[dict],
     df = pd.DataFrame(data)
     return df.melt(id_vars=id_vars,var_name=var_name,value_name=value_name).reset_index(drop=True)
 
+def create_dataframe(data:list[dict])->pd.DataFrame:
+    df = pd.DataFrame(data)
+    return df

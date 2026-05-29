@@ -1,12 +1,17 @@
 from config.settings import SQL_DIR
 from duckdb import DuckDBPyConnection
-
-check_existing_sql = SQL_DIR/'bronze/check_existing_fetch.sql'
+from datetime import date
 
 def check_existing_fetch(con:DuckDBPyConnection,train_no:str)->bool:
     ''' return true if already fetch '''
-    result = con.execute(check_existing_sql.read_text(),[train_no]).fetchone()
+    query= SQL_DIR/'bronze/check_existing_fetch.sql'
+    result = con.execute(query.read_text(),[train_no]).fetchone()
     return True if result else False
+
+def get_successful_trains(con:DuckDBPyConnection,date:date=date.today())->list[tuple]:
+    query = SQL_DIR/'silver/get_train_info.sql'
+    result = con.execute(query.read_text(),[date]).fetchall()
+    return result
 
 # con = get_connection()
 # check_existing_fetch(con,'15959')

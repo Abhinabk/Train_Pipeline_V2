@@ -16,7 +16,7 @@ FARE_ATTR_MAP = {
     "srm1": "Senior Male (Tatkal)",
 }
 
-def fare_details(soup:BeautifulSoup,train_no:str)->list[dict]:
+def fare_details(soup:BeautifulSoup,train_no)->list[dict]:
     '''Return fare for a train \n
     Tatkal and Normal 
     '''

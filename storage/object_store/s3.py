@@ -4,6 +4,7 @@ import boto3
 from botocore.exceptions import ClientError, NoCredentialsError
 from config.logger import bronze_logger
 from config.settings import S3_BUCKET, S3_PREFIX_BRONZE_TRAIN
+from urllib.parse import urlparse
 
 _client = None
 
@@ -99,6 +100,14 @@ def get_files(
             bronze_logger.warning(f"Skipping {key}")
     return results
 
+
+def get_object_from_uri(uri: str) -> str:
+    parsed = urlparse(uri)
+
+    bucket = parsed.netloc #jsut the bucket part
+    key = parsed.path.lstrip("/")
+
+    return get_object(bucket, key)
 
 def save_html_s3(bucket: str, file_name: str, content: str) -> str:
     return put_object(bucket, file_name, content)
