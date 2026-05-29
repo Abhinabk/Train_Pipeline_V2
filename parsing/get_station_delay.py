@@ -6,7 +6,8 @@ from storage.readers.load_html import get_station_html
 from bs4 import BeautifulSoup
 
 
-def station_delay(soup:BeautifulSoup)->list[dict]|dict:
+def station_delay(soup:BeautifulSoup,train_no:str)->list[dict]|dict:
+    '''return dalay data in wide format have to tranform to'''
     pattern = re.compile(r'et\.rsStat\.tooltipData\s*=\s*(\[[\s\S]*?\]);',re.DOTALL)
     full_block = None
     for script in soup.find_all('script'):
@@ -23,15 +24,16 @@ def station_delay(soup:BeautifulSoup)->list[dict]|dict:
     for year,month,days,value_str in rows:
         values = [None if v == 'null' else int(v) for v in value_str.split(',') if v]
         time_data.append({
+            'train_no':train_no,
             'date':date(int(year),int(month)+1,int(days)),
             **dict(zip(labels,values))
         })
-    return time_data
+    return time_data 
 
 
 if __name__ == "__main__":
     html = get_station_html('15959')
-    pprint(station_delay(html))
+    pprint(station_delay(html,'15959'))
 
 
 

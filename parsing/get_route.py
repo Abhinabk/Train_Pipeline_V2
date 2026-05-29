@@ -4,7 +4,7 @@ from storage.readers.load_html import get_station_html
 from bs4 import BeautifulSoup
 
 
-def route(soup:BeautifulSoup)->dict:
+def route(soup:BeautifulSoup,train_no:str)->list[dict]:
     select = soup.find('select',attrs={'name':'src'})
     routes = select.find_all('option')
     result = []
@@ -13,7 +13,8 @@ def route(soup:BeautifulSoup)->dict:
         station_code = r.get('value')
         station_name = r.get_text(strip=True)
         result.append(
-            {'station_code':station_code,
+            {'train_no':train_no,
+             'station_code':station_code,
              'station_name':station_name,
              'order':order
              })
@@ -23,7 +24,7 @@ def route(soup:BeautifulSoup)->dict:
 
 if __name__ == "__main__":
     html = get_station_html('15959')
-    pprint(route(html))
+    pprint(route(html,'15959))
 
 
 

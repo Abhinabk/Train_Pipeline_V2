@@ -1,4 +1,6 @@
 # Attribute meaning map
+from pprint import pprint
+
 from bs4 import BeautifulSoup
 from storage.readers.load_html import get_station_html
 
@@ -14,7 +16,10 @@ FARE_ATTR_MAP = {
     "srm1": "Senior Male (Tatkal)",
 }
 
-def fare_details(soup:BeautifulSoup)->dict:
+def fare_details(soup:BeautifulSoup,train_no:str)->list[dict]:
+    '''Return fare for a train \n
+    Tatkal and Normal 
+    '''
     #train classes
     table = soup.find('table',class_='fullw nocps nolrborder')
     header_row = table.find('tr',class_='odd lighthead1')
@@ -23,20 +28,20 @@ def fare_details(soup:BeautifulSoup)->dict:
     #fare rows
     fare_row = table.find('tr', class_='even')
     fare_tds = fare_row.find_all('td')
-    result = {}
+    result = []
     for i ,td in enumerate(fare_tds):
         train_class = train_classes[i]
-        fare_breakdown = {}
+        row = {'train_no': train_no, 'class': train_class}
         for attr, label in FARE_ATTR_MAP.items():
             value = td.get(attr) #as bs4 internally implements as dict
             if value:
-                fare_breakdown[label] = f"Rs {value}"
+                row[label] = f"Rs {value}" 
 
-        result[train_class] = fare_breakdown
+        result.append(row)  
 
     return result
 
 if __name__ == "__main__":
     html = get_station_html('15959')
-    fare_details(html)
+    pprint(fare_details(html,'15959'))
     

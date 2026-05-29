@@ -1,7 +1,7 @@
 from ingestion.etrain.build_url import build_train_url
 from ingestion.etrain.scraper import fetch_train_history
 from storage.duckdb.queries import check_existing_fetch
-from storage.writer.write_bronze_metadata import insert_bronze_train_metadata
+from storage.writer.bronze.write_bronze_metadata import insert_bronze_train_metadata
 from config.logger import bronze_logger
 import requests
 from duckdb import DuckDBPyConnection
