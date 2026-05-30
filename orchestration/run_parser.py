@@ -3,59 +3,88 @@ from bs4 import BeautifulSoup
 from duckdb import DuckDBPyConnection
 import pandas as pd
 from parsing.get_fare import fare_details
-from parsing.get_route import route
+from parsing.get_route import route_order
 from parsing.get_station_delay import station_delay
-from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.queries import get_successful_trains
-from datetime import date, datetime
+from datetime import date
 from config.logger import silver_logger
 from storage.object_store.s3 import get_object_from_uri
 from storage.writer.silver.write_silver_parquet import write_parquet_to_s3
 from transformations.silver.station_delay import transform_station_delay_to_long
+from prefect import flow ,task
+from prefect import get_run_logger
 
 
+def on_task_failure(task, task_run, state):
+    silver_logger.error(f"Task {task.name} failed on run {task_run.name}: {state.message}")
+
+def on_flow_failure(flow, flow_run, state):
+    silver_logger.error(f"Flow {flow.name} failed: {state.message}")
+
+@task(name='fetch-and-parse-a-train', retries=2,retry_delay_seconds=10,on_failure=[on_task_failure])
+def parse_train(train_no:str,s3_uri:str)->dict:
+    p_logger = get_run_logger()
+    html = get_object_from_uri(s3_uri)
+    soup = BeautifulSoup(html,'html.parser')
+    result = {
+        "station_delay":station_delay(soup, train_no),
+        "route":route_order(soup, train_no),
+        "fare_details":fare_details(soup, train_no)
+    }
+    p_logger.info(f"Processed train {train_no}")
+    silver_logger.success(f"Processed train {train_no}")
+    return result
+
+@task(name="write-station-delay",on_failure=[on_task_failure])
+def write_station_delay(all_station_delay:list|None,run_date:date):
+    if not all_station_delay:
+        return
+    
+    df = transform_station_delay_to_long(all_station_delay)
+    write_parquet_to_s3(df,'station_delay',run_date)
+
+@task(name="write-route",on_failure=[on_task_failure])
+def write_route(all_route:list|None,run_date:date):
+    if not all_route:
+        return
+    
+    df = pd.DataFrame(all_route)
+    write_parquet_to_s3(df,'route_order',run_date)
+@task(name="write-fare",on_failure=[on_task_failure])
+def write_fare(all_fare:list|None,run_date:date):
+    if not all_fare:
+        return
+    
+    df = pd.DataFrame(all_fare)
+    write_parquet_to_s3(df,'fare_details',run_date)  
+
+
+@flow(name="parse-all-trains", on_failure=[on_flow_failure])
 def parse_all_trains(con:DuckDBPyConnection,run_date:date):
-    all_train_s3_url = get_successful_trains(con,run_date)
     all_station_delay = []
     all_route = []
     all_fare = []
-    for train_no,s3_uri in all_train_s3_url:
-        html = get_object_from_uri(s3_uri)
-        soup = BeautifulSoup(html, "html.parser")
-        all_station_delay.extend(
-            station_delay(soup, train_no)
-        )
-
-        all_route.extend(
-            route(soup, train_no)
-        )
-
-        all_fare.extend(
-            fare_details(soup, train_no)
-        )
-        silver_logger.success(f"Processed train {train_no}")
-        break
-    #tranform to dataframe
-    if all_station_delay:
-        station_delay_df = transform_station_delay_to_long(
-            all_station_delay
-        )
-    route_df = pd.DataFrame(
-        all_route
+    all_train_s3_urls = list(get_successful_trains(con, run_date))
+    #for paralles tasks
+    task_runners = parse_train.map(
+        train_no = [t[0] for t in all_train_s3_urls],
+        s3_uri = [t[1] for t in all_train_s3_urls ]
     )
+    #storing all the results of taks_runner together
+    results = [t.result() for t in task_runners]
+    for r in results:
+        for value in r['station_delay']:
+            all_station_delay.append(value)
 
-    fare_df = pd.DataFrame(
-        all_fare
-    )
-    #to parquet
-    write_parquet_to_s3(station_delay_df,'station_delay',run_date)
-    write_parquet_to_s3(route_df,'route_order',run_date)
-    write_parquet_to_s3(fare_df,'fare_details',run_date)
+        for value in r['route']:
+            all_route.append(value)
 
-if __name__ == "__main__":
-    with get_connection() as con:
-        run_date = datetime.fromisoformat("2026-05-27").date()
-        parse_all_trains(con,run_date)
+        for value in r['fare_details']:
+            all_fare.append(value)
+    write_station_delay(all_station_delay,run_date)
+    write_fare(all_fare,run_date)
+    write_route(all_route,run_date)
+
 
 
 

@@ -4,7 +4,7 @@ from storage.readers.load_html import get_station_html
 from bs4 import BeautifulSoup
 
 
-def route(soup:BeautifulSoup,train_no:str)->list[dict]:
+def route_order(soup:BeautifulSoup,train_no:str)->list[dict]:
     select = soup.find('select',attrs={'name':'src'})
     routes = select.find_all('option')
     result = []

@@ -1,4 +1,10 @@
+import pandas as pd
+from prefect import flow, task
+from prefect.cache_policies import NO_CACHE
+
+from config.settings import TRAINS_CSV
 from ingestion.etrain.build_url import build_train_url
+from ingestion.etrain.create_session import create_session
 from ingestion.etrain.scraper import fetch_train_history
 from storage.duckdb.queries import check_existing_fetch
 from storage.writer.bronze.write_bronze_metadata import insert_bronze_train_metadata
@@ -6,6 +12,7 @@ from config.logger import bronze_logger
 import requests
 from duckdb import DuckDBPyConnection
 
+@task(retries=2,retry_delay_seconds=20,cache_policy=NO_CACHE)
 def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no:str,train_name:str):
 
     if check_existing_fetch(con,train_no):
@@ -39,3 +46,15 @@ def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no
         )
     
     insert_bronze_train_metadata(con,metadata)
+    
+@flow(name="bronze-train-ingestion")
+def ingest_all_trains(con:DuckDBPyConnection):
+    train_config_path = TRAINS_CSV
+    session = create_session()
+    df = pd.read_csv(train_config_path)
+    # type: ignore
+    for rows in (df.itertuples(index=False)): # type: ignore
+        train_no = rows.number # type: ignore
+        train_name = rows.name  # type: ignore
+        run_train_ingestion(session,con,str(train_no),str(train_name))
+    bronze_logger.success(f"Ingestion complete: {len(df)} trains processed")
