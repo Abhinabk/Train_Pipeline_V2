@@ -5,10 +5,11 @@ import pandas as pd
 from parsing.get_fare import fare_details
 from parsing.get_route import route_order
 from parsing.get_station_delay import station_delay
-from storage.duckdb.queries import get_successful_trains
+from storage.duckdb.queries import check_existing_parse, get_successful_trains
 from datetime import date
 from config.logger import silver_logger
 from storage.object_store.s3 import get_object_from_uri
+from storage.writer.silver.write_silver_metadata import insert_silver_metadata
 from storage.writer.silver.write_silver_parquet import write_parquet_to_s3
 from transformations.silver.station_delay import transform_station_delay_to_long
 from prefect import flow ,task
@@ -61,6 +62,15 @@ def write_fare(all_fare:list|None,run_date:date):
 
 @flow(name="parse-all-trains", on_failure=[on_flow_failure])
 def parse_all_trains(con:DuckDBPyConnection,run_date:date):
+    if check_existing_parse(con,run_date):
+        silver_logger.log('SKIP',f"aready fetched for {run_date}")
+        return
+    metadata = {
+            "run_date":run_date,
+            "station_delay_path":None,
+            "route_path":None,
+            "fare_path":None
+    }
     all_station_delay = []
     all_route = []
     all_fare = []
@@ -75,15 +85,16 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     for r in results:
         for value in r['station_delay']:
             all_station_delay.append(value)
-
         for value in r['route']:
             all_route.append(value)
-
         for value in r['fare_details']:
             all_fare.append(value)
-    write_station_delay(all_station_delay,run_date)
-    write_fare(all_fare,run_date)
-    write_route(all_route,run_date)
+
+    station_path =write_station_delay(all_station_delay,run_date)
+    fare_path = write_fare(all_fare,run_date)
+    route_path = write_route(all_route,run_date)
+    metadata.update({'station_delay_path':station_path,'route_path':route_path,'fare_path':fare_path})
+    insert_silver_metadata(con, metadata)
 
 
 

@@ -2,10 +2,15 @@ from config.settings import SQL_DIR
 from duckdb import DuckDBPyConnection
 from datetime import date
 
-def check_existing_fetch(con:DuckDBPyConnection,train_no:str)->bool:
+def check_existing_fetch(con:DuckDBPyConnection,train_no:str,run_date:date)->bool:
     ''' return true if already fetch '''
     query= SQL_DIR/'bronze/check_existing_fetch.sql'
-    result = con.execute(query.read_text(),[train_no]).fetchone()
+    result = con.execute(query.read_text(),[train_no,run_date]).fetchone()
+    return True if result else False
+
+def check_existing_parse(con:DuckDBPyConnection,run_date:date)->bool:
+    query= SQL_DIR/'silver/check_existing_parse.sql'
+    result = con.execute(query.read_text(),[run_date]).fetchone()
     return True if result else False
 
 def get_successful_trains(con:DuckDBPyConnection,date:date=date.today())->list[tuple]:

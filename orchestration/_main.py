@@ -12,5 +12,5 @@ if __name__ == "__main__":
     with get_connection() as con: 
         run_date = datetime.today().date()
         init_bronze_train_metadata(con)
-        ingest_all_trains(con) #sequential scraper
+        ingest_all_trains(con,run_date) #sequential scraper
         parse_all_trains(con,run_date) #parallel parser
