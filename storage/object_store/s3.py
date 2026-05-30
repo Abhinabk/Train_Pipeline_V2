@@ -102,11 +102,14 @@ def get_files(
 
 
 def get_object_from_uri(uri: str) -> str:
+    if not uri.startswith("s3://"):
+        raise ValueError(f"Expected s3:// URI, got: {uri}")
+    
     parsed = urlparse(uri)
-
     bucket = parsed.netloc #jsut the bucket part
     key = parsed.path.lstrip("/")
-
+    if not bucket or not key:
+        raise ValueError(f"Could not parse bucket/key from URI: {uri}")
     return get_object(bucket, key)
 
 def save_html_s3(bucket: str, file_name: str, content: str) -> str:

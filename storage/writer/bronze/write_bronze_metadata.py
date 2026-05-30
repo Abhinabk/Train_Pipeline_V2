@@ -12,6 +12,7 @@ def insert_bronze_train_metadata(con, metadata: dict):
             error_message
         )
         VALUES (?, ?, ?, ?, ?, ?, ?)
+        
         """,
         [
             metadata["train_no"],

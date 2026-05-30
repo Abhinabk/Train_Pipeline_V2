@@ -13,10 +13,12 @@ def check_existing_parse(con:DuckDBPyConnection,run_date:date)->bool:
     result = con.execute(query.read_text(),[run_date]).fetchone()
     return True if result else False
 
-def get_successful_trains(con:DuckDBPyConnection,date:date=date.today())->list[tuple]:
+def get_successful_trains(con:DuckDBPyConnection,run_date:date)->list[tuple]:
     '''returns train_no and s3_url returns for today if no date provided'''
+    if run_date is None:
+        run_date = date.today()
     query = SQL_DIR/'silver/get_train_info.sql'
-    result = con.execute(query.read_text(),[date]).fetchall()
+    result = con.execute(query.read_text(),[run_date]).fetchall()
     return result
 # con = get_connection()
 # check_existing_fetch(con,'15959')

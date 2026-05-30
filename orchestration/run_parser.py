@@ -14,7 +14,6 @@ from storage.writer.silver.write_silver_metadata import insert_silver_metadata
 from storage.writer.silver.write_silver_parquet import write_parquet_to_s3
 from transformations.silver.station_delay import transform_station_delay_to_long
 from prefect import flow ,task
-from prefect import get_run_logger
 
 
 def on_task_failure(task, task_run, state):
@@ -25,16 +24,14 @@ def on_flow_failure(flow, flow_run, state):
 
 @task(name='fetch-and-parse-a-train', retries=2,retry_delay_seconds=10,on_failure=[on_task_failure])
 def parse_train(train_no:str,s3_uri:str)->dict:
-    p_logger = get_run_logger()
     html = get_object_from_uri(s3_uri)
     soup = BeautifulSoup(html,'html.parser')
     result = {
         "station_delay":station_delay(soup, train_no),
         "route":route_order(soup, train_no),
         "fare_details":fare_details(soup, train_no),
-        "running_days":running_days(soup,train_no)
+        "running_days":running_days(soup,train_no),
     }
-    p_logger.info(f"Processed train {train_no}")
     silver_logger.success(f"Processed train {train_no}")
     return result
 
@@ -77,7 +74,8 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
             "run_date":run_date,
             "station_delay_path":None,
             "route_path":None,
-            "fare_path":None
+            "fare_path":None,
+            "running_days_path":None
     }
     all_station_delay = []
     all_route = []
