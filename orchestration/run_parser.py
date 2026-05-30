@@ -5,6 +5,7 @@ import pandas as pd
 from parsing.get_fare import fare_details
 from parsing.get_route import route_order
 from parsing.get_station_delay import station_delay
+from parsing.get_running_days import running_days
 from storage.duckdb.queries import check_existing_parse, get_successful_trains
 from datetime import date
 from config.logger import silver_logger
@@ -30,7 +31,8 @@ def parse_train(train_no:str,s3_uri:str)->dict:
     result = {
         "station_delay":station_delay(soup, train_no),
         "route":route_order(soup, train_no),
-        "fare_details":fare_details(soup, train_no)
+        "fare_details":fare_details(soup, train_no),
+        "running_days":running_days(soup,train_no)
     }
     p_logger.info(f"Processed train {train_no}")
     silver_logger.success(f"Processed train {train_no}")
@@ -58,7 +60,13 @@ def write_fare(all_fare:list|None,run_date:date):
     
     df = pd.DataFrame(all_fare)
     write_parquet_to_s3(df,'fare_details',run_date)  
-
+@task(name="write-running-days",on_failure=[on_task_failure])
+def write_running_days(all_running_days:list|None,run_date:date):
+    if not all_running_days:
+        return
+    
+    df = pd.DataFrame(all_running_days)
+    write_parquet_to_s3(df,'all_running_days',run_date)  
 
 @flow(name="parse-all-trains", on_failure=[on_flow_failure])
 def parse_all_trains(con:DuckDBPyConnection,run_date:date):
@@ -74,6 +82,7 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     all_station_delay = []
     all_route = []
     all_fare = []
+    all_running_days = []
     all_train_s3_urls = list(get_successful_trains(con, run_date))
     #for paralles tasks
     task_runners = parse_train.map(
@@ -89,11 +98,15 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
             all_route.append(value)
         for value in r['fare_details']:
             all_fare.append(value)
+        for value in r['running_days']:
+            all_running_days.append(value)
 
     station_path =write_station_delay(all_station_delay,run_date)
     fare_path = write_fare(all_fare,run_date)
     route_path = write_route(all_route,run_date)
-    metadata.update({'station_delay_path':station_path,'route_path':route_path,'fare_path':fare_path})
+    running_days_path = write_running_days(all_running_days,run_date)
+    metadata.update({'station_delay_path':station_path,'route_path':route_path,
+                     'fare_path':fare_path,'running_days_path':running_days_path})
     insert_silver_metadata(con, metadata)
 
 

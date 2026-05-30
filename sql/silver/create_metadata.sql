@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS silver.parse_metadata(
     parsed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     station_delay_path  VARCHAR,
     route_path VARCHAR,
-    fare_path VARCHAR
+    fare_path VARCHAR,
+    running_days_path VARCHAR
 )
