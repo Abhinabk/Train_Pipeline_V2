@@ -2,7 +2,7 @@ from pathlib import Path
 
 import boto3
 from botocore.exceptions import ClientError, NoCredentialsError
-from config.logger import bronze_logger
+from config.logger import generic_logger
 from config.settings import S3_BUCKET, S3_PREFIX_BRONZE_TRAIN
 from urllib.parse import urlparse
 
@@ -31,10 +31,10 @@ def put_object(bucket: str, key: str, content: str | bytes)->str:
         return f"s3://{bucket}/{key}"
 
     except NoCredentialsError as err:
-        bronze_logger.error(f"{err}")
+        generic_logger.error(f"{err}")
         raise RuntimeError("AWS credentials not configured")
     except ClientError as e:
-        bronze_logger.error(f"{e.response['Error']}")
+        generic_logger.error(f"{e.response['Error']}")
         raise RuntimeError(f"S3 upload failed: {e.response['Error']['Code']}")
 
 
@@ -53,10 +53,10 @@ def list_keys(
         return keys
 
     except NoCredentialsError as err:
-        bronze_logger.error(f"{err}")
+        generic_logger.error(f"{err}")
         raise RuntimeError("AWS credentials not configured")
     except ClientError as e:
-        bronze_logger.error(f"{e.response['Error']}")
+        generic_logger.error(f"{e.response['Error']}")
         raise RuntimeError(f"S3 upload failed: {e.response['Error']['Code']}")
 
 
@@ -66,10 +66,10 @@ def get_object(bucket: str, key: str) -> str:
         response = client.get_object(Bucket=bucket, Key=key)
         return response["Body"].read().decode("utf-8")
     except NoCredentialsError as err:
-        bronze_logger.error(f"{err}")
+        generic_logger.error(f"{err}")
         raise RuntimeError("AWS credentials not configured")
     except ClientError as e:
-        bronze_logger.error(f"{e.response['Error']}")
+        generic_logger.error(f"{e.response['Error']}")
         raise RuntimeError(f"S3 failed: {e.response['Error']['Code']}")
 
 
@@ -97,7 +97,7 @@ def get_files(
         if key and key.endswith(f".{type}"):
             results.append(get_object(bucket, key))
         else:
-            bronze_logger.warning(f"Skipping {key}")
+            generic_logger.warning(f"Skipping {key}")
     return results
 
 
