@@ -1,4 +1,7 @@
-def insert_bronze_train_metadata(con, metadata: dict):
+from duckdb import DuckDBPyConnection
+
+from validators.bronze.metadata import BronzeTrainMetadata
+def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMetadata):
 
     con.execute(
         """
@@ -15,12 +18,12 @@ def insert_bronze_train_metadata(con, metadata: dict):
         
         """,
         [
-            metadata["train_no"],
-            metadata["train_name"],
-            metadata["source_url"],
-            metadata["file_path"],
-            metadata["response_status_code"],
-            metadata["success"],
-            metadata["error_message"],
+            metadata.train_no,
+            metadata.train_name,
+            metadata.source_url,
+            metadata.file_path,
+            metadata.response_status_code,
+            metadata.success,
+            metadata.error_message,
         ],
     )

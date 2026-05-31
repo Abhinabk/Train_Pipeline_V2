@@ -20,7 +20,7 @@ def get_client():
     return _client
 
 
-def put_object(bucket: str, key: str, content: str | bytes):
+def put_object(bucket: str, key: str, content: str | bytes)->str:
     client = get_client()
     try:
         client.put_object(

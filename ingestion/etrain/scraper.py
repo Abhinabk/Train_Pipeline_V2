@@ -7,7 +7,7 @@ from storage.object_store.local import save_html
 from storage.object_store.s3 import save_html_s3
 
 def fetch_train_history(url,session,train_no,train_name,year="1y",storage="local"):
-    '''Fetches train data and returns the metadata
+    '''Fetches train data and returns its metadata
         have to updte response code , success and error_message
         on excpetion
         ** fetch already does raise_for_status() 
