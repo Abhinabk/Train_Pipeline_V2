@@ -1,4 +1,7 @@
-def insert_silver_metadata(con, metadata: dict):
+from validators.silver.metadata import SilverTrainMetadata
+
+
+def insert_silver_metadata(con, metadata: SilverTrainMetadata):
 
     con.execute(
         """
@@ -17,10 +20,10 @@ def insert_silver_metadata(con, metadata: dict):
             running_days_path =  EXCLUDED.running_days_path
         """,
         [
-            metadata["run_date"],
-            metadata["station_delay_path"],
-            metadata["route_path"],
-            metadata["fare_path"],
-            metadata["running_days_path"]
+            metadata.run_date,
+            metadata.station_delay_path,
+            metadata.route_path,
+            metadata.fare_path,
+            metadata.running_days_path
         ],
     )

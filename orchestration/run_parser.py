@@ -15,6 +15,8 @@ from storage.writer.silver.write_silver_parquet import write_parquet_to_s3
 from transformations.silver.station_delay import transform_station_delay_to_long
 from prefect import flow ,task
 
+from validators.silver.metadata import SilverTrainMetadata
+
 
 def on_task_failure(task, task_run, state):
     silver_logger.error(f"Task {task.name} failed on run {task_run.name}: {state.message}")
@@ -22,7 +24,7 @@ def on_task_failure(task, task_run, state):
 def on_flow_failure(flow, flow_run, state):
     silver_logger.error(f"Flow {flow.name} failed: {state.message}")
 
-@task(name='fetch-and-parse-a-train', retries=2,retry_delay_seconds=10,on_failure=[on_task_failure])
+@task(name='fetch-from-s3-and-parse-a-train', retries=2,retry_delay_seconds=10,on_failure=[on_task_failure])
 def parse_train(train_no:str,s3_uri:str)->dict:
     html = get_object_from_uri(s3_uri)
     soup = BeautifulSoup(html,'html.parser')
@@ -36,47 +38,40 @@ def parse_train(train_no:str,s3_uri:str)->dict:
     return result
 
 @task(name="write-station-delay",on_failure=[on_task_failure])
-def write_station_delay(all_station_delay:list|None,run_date:date):
+def write_station_delay(all_station_delay:list|None,run_date:date)->str|None:
     if not all_station_delay:
-        return
+        return None
     
     df = transform_station_delay_to_long(all_station_delay)
-    write_parquet_to_s3(df,'station_delay',run_date)
+    return write_parquet_to_s3(df,'station_delay',run_date)
 
 @task(name="write-route",on_failure=[on_task_failure])
-def write_route(all_route:list|None,run_date:date):
+def write_route(all_route:list|None,run_date:date)->str|None:
     if not all_route:
-        return
-    
+        return None
     df = pd.DataFrame(all_route)
-    write_parquet_to_s3(df,'route_order',run_date)
+    return write_parquet_to_s3(df,'route_order',run_date)
+
 @task(name="write-fare",on_failure=[on_task_failure])
-def write_fare(all_fare:list|None,run_date:date):
+def write_fare(all_fare:list|None,run_date:date)->str|None:
     if not all_fare:
-        return
-    
+        return None  
     df = pd.DataFrame(all_fare)
-    write_parquet_to_s3(df,'fare_details',run_date)  
+    return write_parquet_to_s3(df,'fare_details',run_date)  
+
 @task(name="write-running-days",on_failure=[on_task_failure])
-def write_running_days(all_running_days:list|None,run_date:date):
+def write_running_days(all_running_days:list|None,run_date:date)->str|None:
     if not all_running_days:
         return
     
     df = pd.DataFrame(all_running_days)
-    write_parquet_to_s3(df,'all_running_days',run_date)  
+    return write_parquet_to_s3(df,'all_running_days',run_date)  
 
 @flow(name="parse-all-trains", on_failure=[on_flow_failure])
 def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     if check_existing_parse(con,run_date):
         silver_logger.log('SKIP',f"aready fetched for {run_date}")
         return
-    metadata = {
-            "run_date":run_date,
-            "station_delay_path":None,
-            "route_path":None,
-            "fare_path":None,
-            "running_days_path":None
-    }
     all_station_delay = []
     all_route = []
     all_fare = []
@@ -103,8 +98,13 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     fare_path = write_fare(all_fare,run_date)
     route_path = write_route(all_route,run_date)
     running_days_path = write_running_days(all_running_days,run_date)
-    metadata.update({'station_delay_path':station_path,'route_path':route_path,
-                     'fare_path':fare_path,'running_days_path':running_days_path})
+    metadata = SilverTrainMetadata(
+            run_date=run_date,
+            station_delay_path=station_path,
+            route_path=route_path,
+            fare_path=fare_path,
+            running_days_path=running_days_path
+        )
     insert_silver_metadata(con, metadata) #sequntial as duckdb dosent accept concurrent write for a single connection
 
 
