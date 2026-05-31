@@ -5,7 +5,7 @@ class BronzeTrainMetadata(BaseModel):
     train_name: str
     source_url: str 
     file_path: str 
-    response_status_code: int
+    response_status_code: int|None
     success: bool
-    error_message: str
+    error_message: str|None
     
