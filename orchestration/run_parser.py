@@ -105,7 +105,7 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     running_days_path = write_running_days(all_running_days,run_date)
     metadata.update({'station_delay_path':station_path,'route_path':route_path,
                      'fare_path':fare_path,'running_days_path':running_days_path})
-    insert_silver_metadata(con, metadata)
+    insert_silver_metadata(con, metadata) #sequntial as duckdb dosent accept concurrent write for a single connection
 
 
 
