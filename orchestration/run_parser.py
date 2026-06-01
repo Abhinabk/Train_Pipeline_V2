@@ -35,6 +35,7 @@ def parse_train(train_no:str,s3_uri:str)->dict:
         "running_days":running_days(soup,train_no),
     }
     silver_logger.success(f"Processed train {train_no}")
+    silver_logger.info(f"{train_no} route len: {len(result['route'])}")
     return result
 
 @task(name="write-station-delay",on_failure=[on_task_failure])
@@ -76,7 +77,8 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     all_route = []
     all_fare = []
     all_running_days = []
-    all_train_s3_urls = list(get_successful_trains(con, run_date))
+    all_train_s3_urls = list(get_successful_trains(con, run_date))        
+    
     #for paralles tasks
     task_runners = parse_train.map(
         train_no = [t[0] for t in all_train_s3_urls],
@@ -98,6 +100,11 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     fare_path = write_fare(all_fare,run_date)
     route_path = write_route(all_route,run_date)
     running_days_path = write_running_days(all_running_days,run_date)
+
+    if station_path is None or fare_path is None or route_path is None or running_days_path is None:
+        silver_logger.warning(f"incomplete parse for {run_date} have to reparse, skipping")
+        return
+    
     metadata = SilverTrainMetadata(
             run_date=run_date,
             station_delay_path=station_path,
