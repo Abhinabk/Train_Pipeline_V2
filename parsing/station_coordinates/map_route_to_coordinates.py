@@ -3,37 +3,45 @@ from pprint import pprint
 
 from config.settings import REFERENCE_JSON_S3_KEY 
 from parsing.station_coordinates.get_station_name_coordinates import station_names_coordinates
-from parsing.get_route import route_order
 from parsing.station_coordinates.normalize_names import normalize_names
+from storage.duckdb.duckdb_con import get_connection
+from storage.duckdb.queries import get_route_path
 from storage.readers.load_html import get_station_html
 from config.logger import silver_logger
+from datetime import datetime
 
+from storage.readers.load_parquet import load_distinct_route_stations_parquet
 
-def route_to_coords(route_stations:list[dict],coords:dict)->dict[str,list[dict]]:
+def route_to_coords(route_stations:list[tuple],coords:dict)->dict[str,list[dict]]:
     matched,missing = [],[]
-    for s in route_stations:
-        key = normalize_names(s['station_name'])
+    for station_code,station_name in route_stations:
+        key = normalize_names(station_name)
         if key in coords:
             item = coords[key]
             matched.append({
-                'station_code':s['station_code'],
-                'station_name':s['station_name'],
+                'station_code':station_code,
+                'station_name':station_name,
                 'longitude':item.longitude,
                 'latitude':item.latitude
             })
         else:
             missing.append({
-                'station_code':s['station_code'],
-                'station_name':s['station_name'],
+                'station_code':station_code,
+                'station_name':station_name,
             })
-            silver_logger.warning(f"no coordinate match: {s['station_code']} {s['station_name']}")
+            silver_logger.warning(f"no coordinate match: {station_code} {station_name}")
     return {"matched": matched, "missing": missing}
 
 if __name__ == "__main__":
     html = get_station_html('15959')
     ref_coordinates = station_names_coordinates(str(REFERENCE_JSON_S3_KEY)) 
-    route_stations = route_order(html,'15959')
-    result = route_to_coords(route_stations,ref_coordinates)
+    with get_connection() as con:
+        route_stations_path = get_route_path(con,datetime.today().date())
+        if route_stations_path:
+            route_stations = load_distinct_route_stations_parquet(route_stations_path)
+        if route_stations:
+            result = route_to_coords(route_stations,ref_coordinates)
+                
     print("matched")
     pprint(result['matched'])
     print("missing")

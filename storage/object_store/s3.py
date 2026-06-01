@@ -72,7 +72,7 @@ def get_object(bucket: str, key: str) -> str:
         generic_logger.error(f"{e.response['Error']}")
         raise RuntimeError(f"S3 failed: {e.response['Error']['Code']}")
 
-
+    
 def get_files(
     bucket=S3_BUCKET,
     prefix=S3_PREFIX_BRONZE_TRAIN,
