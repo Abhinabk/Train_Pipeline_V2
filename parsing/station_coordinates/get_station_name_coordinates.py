@@ -1,6 +1,6 @@
 from parsing.station_coordinates.normalize_names import normalize_names
 from storage.readers.load_json import load_json
-from validators.silver.coordinates import StationCoordinates
+from validators.reference.coordinates import StationCoordinates
 from config.logger import silver_logger
 
 def station_names_coordinates(s3_key:str)->dict[str,StationCoordinates]:
@@ -20,4 +20,5 @@ def station_names_coordinates(s3_key:str)->dict[str,StationCoordinates]:
         #     silver_logger.warning(f"duplicate station name, overwriting: {station_name}")
         key= normalize_names(station_name)
         lookup[key] = station_coords
+        
     return lookup

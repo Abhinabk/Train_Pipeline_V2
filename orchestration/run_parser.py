@@ -11,7 +11,7 @@ from datetime import date
 from config.logger import silver_logger
 from storage.object_store.s3 import get_object_from_uri
 from storage.writer.silver.write_silver_metadata import insert_silver_metadata
-from storage.writer.silver.write_silver_parquet import write_parquet_to_s3
+from storage.writer.common.write_parquet import write_parquet_to_s3
 from transformations.silver.station_delay import transform_station_delay_to_long
 from prefect import flow ,task
 
