@@ -24,7 +24,7 @@ def route_order(soup:BeautifulSoup,train_no:str)->list[dict]:
 
 if __name__ == "__main__":
     html = get_station_html('15959')
-    pprint(route(html,'15959'))
+    pprint(route_order(html,'15959'))
 
 
 
