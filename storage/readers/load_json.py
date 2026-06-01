@@ -4,9 +4,9 @@ from config.settings import CACHE_DIR
 from config.settings import S3_BUCKET
 from storage.object_store.s3 import get_object
 
-def load_json(data:str,local_cache:bool=True)->dict:
-    cache_file = CACHE_DIR/f"{Path(data).stem}.geojson"
-    station_full_key = data
+def load_json(data_path:str,local_cache:bool=True)->dict:
+    cache_file = CACHE_DIR/f"{Path(data_path).stem}.geojson"
+    station_full_key = data_path
     if local_cache:
         if cache_file.is_file():
             return json.loads(cache_file.read_text())
