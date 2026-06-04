@@ -1,3 +1,5 @@
 etrain: 
   "base_url": "https://etrain.info/train"
+open-meteo:
+  "base_url": "https://archive-api.open-meteo.com/v1/archive"
 

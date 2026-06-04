@@ -24,5 +24,15 @@ def get_route_path(con:DuckDBPyConnection,run_date:date)->str|None:
     result = con.execute(query.read_text(),[run_date]).fetchone()
     if result:
         return result[0]
-# con = get_connection()
-# check_existing_fetch(con,'15959')
+    
+def get_min_max_date(con:DuckDBPyConnection,run_date:date)->tuple|None:
+    path = con.execute("""
+        SELECT station_delay_path
+        FROM silver.parse_metadata
+        WHERE run_date = ?
+    """,[run_date]).fetchone()
+    if path:
+        return con.execute("""
+            SELECT MIN(date::DATE), MAX(date::DATE)
+            FROM read_parquet(?)
+        """, [path]).fetchone()

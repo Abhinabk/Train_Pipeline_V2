@@ -19,7 +19,7 @@ def fetch_train_history(url,session,train_no,train_name,year="1y",storage="local
         save_html(file_path, html)     
       
     elif storage == "s3":
-        #buck alraedy given in argument no need to append to key path
+        #bucket alraedy given in argument no need to append to key path
         key =  f"{S3_PREFIX_BRONZE_TRAIN}/{date.today()}/{train_name}_{train_no}.html"
         file_path = save_html_s3(S3_BUCKET,key,html)
 
