@@ -15,19 +15,19 @@ from storage.readers.load_parquet import load_distinct_route_stations_parquet
 def route_to_coords(route_stations:list[tuple],coords:dict)->dict[str,list[dict]]:
     matched,missing = [],[]
     for station_code,station_name in route_stations:
-        key = normalize_names(station_name)
+        key = normalize_names(station_name) #the return key is noramlized not the station_name itself
         if key in coords:
             item = coords[key]
             matched.append({
                 'station_code':station_code,
-                'station_name':station_name,
+                'station_name':station_name,#saved as original station_name
                 'longitude':item.longitude,
                 'latitude':item.latitude
             })
         else:
             if station_code in MANUAL_COORDS:
                 longitude,latitude = MANUAL_COORDS[station_code]
-                matched.append({
+                missing.append({
                     'station_code':station_code,
                     'station_name':station_name,
                     'longitude':longitude,
