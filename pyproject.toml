@@ -6,10 +6,10 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "beautifulsoup4>=4.14.3",
+    "boto3>=1.43.22",
     "duckdb==1.5.2",
     "fake-useragent>=2.2.0",
     "loguru>=0.7.3",
-    "marimo>=0.23.7",
     "mypy-boto3-s3>=1.43.14",
     "pandas>=3.0.3",
     "pandera>=0.31.1",

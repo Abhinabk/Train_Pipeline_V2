@@ -35,6 +35,10 @@ def route_to_coords(route_stations:list[tuple],coords:dict)->dict[str,list[dict]
                 })
             else:
                 silver_logger.warning(f"no coordinate match: {station_code} {station_name}")
+                missing.append({
+                    'station_code':station_code,
+                    'station_name':station_name
+                })
     return {"matched": matched, "missing": missing}
 
 if __name__ == "__main__":
