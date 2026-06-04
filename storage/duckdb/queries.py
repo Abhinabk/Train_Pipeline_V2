@@ -26,8 +26,10 @@ def get_route_path(con:DuckDBPyConnection,run_date:date)->str|None:
         return result[0]
     
 def get_min_max_date(con:DuckDBPyConnection,run_date:date)->tuple|None:
+    '''return a tuple containing (min_date,max_date)'''
     path = con.execute("""
-        SELECT station_delay_path
+        SELECT 
+            station_delay_path 
         FROM silver.parse_metadata
         WHERE run_date = ?
     """,[run_date]).fetchone()
@@ -35,4 +37,25 @@ def get_min_max_date(con:DuckDBPyConnection,run_date:date)->tuple|None:
         return con.execute("""
             SELECT MIN(date::DATE), MAX(date::DATE)
             FROM read_parquet(?)
-        """, [path]).fetchone()
+        """, [path[0]]).fetchone()
+    else:
+        raise ValueError(f"No path found check data for run_date={run_date} exists")
+
+
+def get_station_coords(con:DuckDBPyConnection,run_date:date)->list[tuple]:
+    '''
+    return list of tuple containing [(station_code,station_name,log,latitude),...]
+    for run_date provided make sure reference ran on that day
+    '''
+    path = con.execute("""
+        SELECT matched_key
+        FROM reference.metadata
+        WHERE run_date = ?
+    """,[run_date]).fetchone()
+    if path:
+        return con.execute("""
+            SELECT * FROM read_parquet(?)   
+        """,[path[0]]).fetchall()
+    else:
+        raise ValueError(f"No path found check for run_date={run_date} exists")
+
