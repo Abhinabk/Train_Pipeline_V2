@@ -6,6 +6,7 @@ def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMe
     con.execute(
         """
         INSERT INTO bronze.train_metadata (
+            run_date,
             train_no,
             train_name,
             source_url,
@@ -14,10 +15,17 @@ def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMe
             success,
             error_message
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(train_no,run_date) DO UPDATE SET
+            train_name  = EXCLUDED.train_name,
+            source_url  = EXCLUDED.source_url,
+            file_path   = EXCLUDED.file_path,
+            response_status_code = EXCLUDED.response_status_code,
+            success = EXCLUDED.success,
+            error_message   = EXCLUDED.error_message,
         """,
-        [
+        [   
+            metadata.run_date,
             metadata.train_no,
             metadata.train_name,
             metadata.source_url,

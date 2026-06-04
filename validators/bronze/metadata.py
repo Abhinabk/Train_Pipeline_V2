@@ -1,6 +1,9 @@
+from datetime import date
+
 from pydantic import BaseModel 
 
 class BronzeTrainMetadata(BaseModel):
+    run_date: date
     train_no: str
     train_name: str
     source_url: str 

@@ -39,29 +39,28 @@ def parse_train(train_no:str,s3_uri:str)->dict:
     return result
 
 @task(name="write-station-delay",on_failure=[on_task_failure])
-def write_station_delay(all_station_delay:list|None,run_date:date)->str|None:
+def write_station_delay(all_station_delay:list[dict|None],run_date:date)->str|None:
     if not all_station_delay:
         return None
-    
-    df = transform_station_delay_to_long(all_station_delay)
+    df = pd.DataFrame(all_station_delay)
     return write_parquet_to_s3(df,'station_delay',run_date)
 
 @task(name="write-route",on_failure=[on_task_failure])
-def write_route(all_route:list|None,run_date:date)->str|None:
+def write_route(all_route:list[dict|None],run_date:date)->str|None:
     if not all_route:
         return None
     df = pd.DataFrame(all_route)
     return write_parquet_to_s3(df,'route_order',run_date)
 
 @task(name="write-fare",on_failure=[on_task_failure])
-def write_fare(all_fare:list|None,run_date:date)->str|None:
+def write_fare(all_fare:list[dict|None],run_date:date)->str|None:
     if not all_fare:
         return None  
     df = pd.DataFrame(all_fare)
     return write_parquet_to_s3(df,'fare_details',run_date)  
 
 @task(name="write-running-days",on_failure=[on_task_failure])
-def write_running_days(all_running_days:list|None,run_date:date)->str|None:
+def write_running_days(all_running_days:list[dict|None],run_date:date)->str|None:
     if not all_running_days:
         return
     
@@ -69,8 +68,8 @@ def write_running_days(all_running_days:list|None,run_date:date)->str|None:
     return write_parquet_to_s3(df,'all_running_days',run_date)  
 
 @flow(name="parse-all-trains", on_failure=[on_flow_failure])
-def parse_all_trains(con:DuckDBPyConnection,run_date:date):
-    if check_existing_parse(con,run_date):
+def parse_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):
+    if not force and check_existing_parse(con,run_date):
         silver_logger.log('SKIP',f"aready fetched for {run_date}")
         return
     all_station_delay = []
@@ -87,14 +86,21 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date):
     #storing all the results of taks_runner together
     results = [t.result() for t in task_runners]
     for r in results:
-        for value in r['station_delay']:
-            all_station_delay.append(value)
-        for value in r['route']:
-            all_route.append(value)
-        for value in r['fare_details']:
-            all_fare.append(value)
-        for value in r['running_days']:
-            all_running_days.append(value)
+        if (r['station_delay']): #falsy for []
+            long_df = transform_station_delay_to_long(r['station_delay'])
+            all_station_delay.extend(long_df.to_dict(orient='records')) #coverts the reurned df to list of dict per row
+        all_route.extend(r['route'])
+        all_fare.extend(r['fare_details'])
+        all_running_days.extend(r['running_days'])
+
+        # for value in r['station_delay']:
+        #     all_station_delay.append(value)
+        # for value in r['route']:
+        #     all_route.append(value)
+        # for value in r['fare_details']:
+        #     all_fare.append(value)
+        # for value in r['running_days']:
+        #     all_running_days.append(value)
 
     station_path =write_station_delay(all_station_delay,run_date)
     fare_path = write_fare(all_fare,run_date)

@@ -18,9 +18,9 @@ from validators.bronze.metadata import BronzeTrainMetadata
 
 
 @task(retries=2,retry_delay_seconds=20,cache_policy=NO_CACHE)
-def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no:str,train_name:str,run_date:date):
+def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no:str,train_name:str,run_date:date,force:bool):
 
-    if check_existing_fetch(con,train_no,run_date):
+    if not force and check_existing_fetch(con,train_no,run_date):
         bronze_logger.log('SKIP',f"{train_name}_{train_no} aready fetched today")
         return
     url = build_train_url(train_no,train_name,time="1y") # type: ignore
@@ -29,6 +29,7 @@ def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no
     try:
         result = fetch_train_history(url,session,train_no,safe_train_name,storage="s3")
         metadata = BronzeTrainMetadata(
+            run_date=run_date,
             train_no=train_no,
             train_name=safe_train_name,
             source_url=url,
@@ -42,6 +43,7 @@ def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no
 
     except requests.exceptions.RequestException as err:
         metadata = BronzeTrainMetadata(
+            run_date=run_date,
             train_no=train_no,
             train_name=safe_train_name,
             source_url=url,
@@ -55,7 +57,7 @@ def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no
     insert_bronze_train_metadata(con,metadata)
     
 @flow(name="bronze-train-ingestion")
-def ingest_all_trains(con:DuckDBPyConnection,run_date:date):
+def ingest_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):
    
     train_config_path = TRAINS_CSV
     session = create_session()
@@ -64,5 +66,5 @@ def ingest_all_trains(con:DuckDBPyConnection,run_date:date):
     for rows in (df.itertuples(index=False)): # type: ignore
         train_no = rows.number # type: ignore
         train_name = rows.name  # type: ignore
-        run_train_ingestion(session,con,str(train_no),str(train_name),run_date)
+        run_train_ingestion(session,con,str(train_no),str(train_name),run_date,force)
     bronze_logger.success(f"Ingestion complete: {len(df)} trains processed")

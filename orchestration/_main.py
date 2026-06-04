@@ -6,13 +6,31 @@ from orchestration.run_parser import parse_all_trains
 from orchestration.run_route_to_coords import write_route_coords_all
 from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.init_db import init_db
+from argparse import ArgumentParser 
 
 load_dotenv() 
 
 if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument(
+        "-fp","--force-parse",
+        action="store_true",
+        help="forced reparse for same day run"
+    )
+
+    parser.add_argument(
+        "-p", "--parser-only",
+        action="store_true",
+        help="run only parser stage"
+    )
+    args = parser.parse_args()
+
     with get_connection() as con: 
         run_date = datetime.today().date()
         init_db(con)
-        ingest_all_trains(con,run_date) #sequential scraper
-        parse_all_trains(con,run_date) #parallel parser
-        write_route_coords_all(con,run_date) # creates the refernce table
+        if args.parser_only:
+            parse_all_trains(con,run_date,force=args.force_parse) #parallel parser
+        else:
+            ingest_all_trains(con,run_date,force=args.force_parse) #sequential scraper
+            parse_all_trains(con,run_date,force=args.force_parse) #parallel parser
+            write_route_coords_all(con,run_date) # creates the refernce table
