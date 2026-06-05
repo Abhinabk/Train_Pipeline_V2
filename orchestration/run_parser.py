@@ -84,7 +84,7 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):
         s3_uri = [t[1] for t in all_train_s3_urls ]
     )
     #storing all the results of taks_runner together
-    results = [t.result() for t in task_runners]
+    results = [t.result() for t in task_runners] #result method wats for returns implicity so nno need for wait
     for r in results:
         if (r['station_delay']): #falsy for []
             long_df = transform_station_delay_to_long(r['station_delay'])

@@ -1,6 +1,6 @@
 from duckdb import DuckDBPyConnection
 
-from validators.bronze.metadata import BronzeTrainMetadata
+from validators.bronze.metadata import BronzeTrainMetadata,OpenMeteoMetadata
 def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMetadata):
 
     con.execute(
@@ -29,6 +29,37 @@ def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMe
             metadata.train_no,
             metadata.train_name,
             metadata.source_url,
+            metadata.file_path,
+            metadata.response_status_code,
+            metadata.success,
+            metadata.error_message,
+        ],
+    )
+
+def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetadata):
+
+    con.execute(
+        """
+        INSERT INTO bronze.train_metadata (
+            run_date,
+            station_code
+            file_path,
+            response_status_code,
+            success,
+            error_message
+        )
+        VALUES (?, ?, ?, ?, ?, ?,)
+        ON CONFLICT(station_code,run_date) DO UPDATE SET
+            train_name  = EXCLUDED.train_name,
+            source_url  = EXCLUDED.source_url,
+            file_path   = EXCLUDED.file_path,
+            response_status_code = EXCLUDED.response_status_code,
+            success = EXCLUDED.success,
+            error_message   = EXCLUDED.error_message,
+        """,
+        [   
+            metadata.run_date,
+            metadata.station_code,
             metadata.file_path,
             metadata.response_status_code,
             metadata.success,

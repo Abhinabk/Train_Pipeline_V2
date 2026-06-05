@@ -1,13 +1,15 @@
 from datetime import date
 from pprint import pprint
+from time import time
 
 import requests
 
 from ingestion.openmeteo.build_url import build_weather_url
 from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.queries import  get_min_max_date, get_station_coords
-
-def fetch_weather_daily(session:requests.Session,longitude:float,latitude:float,start_date:str,end_date:str,station_code:str):
+from config.logger import bronze_logger
+def fetch_weather_daily(session:requests.Session,station_code:str,longitude:float,latitude:float,start_date:str,end_date:str)->dict:
+    '''return the station_code with a json of weather variables'''
     url = build_weather_url()
     params = {
     "latitude": latitude,
@@ -21,12 +23,13 @@ def fetch_weather_daily(session:requests.Session,longitude:float,latitude:float,
         "daylight_duration", #in sec
         "wind_gusts_10m_max", 
         "weather_code"],
-    } #values are indexed by date so returns a data for index implicitly 
-    response = session.get(url=url,params=params)
-    response.raise_for_status() #will raise http code if error
+    } #values are indexed by date so returns a data for index implicitly defaults to utc bucketing
+    response = session.get(url=url,params=params) 
+    response.raise_for_status() #will raise http code if error None if success
     return {
+        "status_code": response.status_code,
         "station_code":station_code,
-        "weather_daily":response.json()
+        "weather_daily":response.json()['daily']
     }
 
 if __name__ == "__main__":

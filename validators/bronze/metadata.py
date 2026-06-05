@@ -2,6 +2,14 @@ from datetime import date
 
 from pydantic import BaseModel 
 
+class OpenMeteoMetadata(BaseModel):
+    run_date: date
+    station_code: str
+    file_path: str|None
+    response_status_code: int|None
+    error_message: str|None
+    success: bool
+    
 class BronzeTrainMetadata(BaseModel):
     run_date: date
     train_no: str
@@ -17,3 +25,4 @@ class BronzeTrainMetadata(BaseModel):
 but since i am making a object per branch(pass/fail) i will know the path
 so no need for file_path: str|None = None
 '''
+
