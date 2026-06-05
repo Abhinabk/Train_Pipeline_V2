@@ -8,6 +8,12 @@ def check_existing_fetch(con:DuckDBPyConnection,train_no:str,run_date:date)->boo
     result = con.execute(query.read_text(),[train_no,run_date]).fetchone()
     return True if result else False
 
+def check_existing_weather(con:DuckDBPyConnection,station_code:str,run_date:date):
+    ''' return true if already fetch '''
+    query= SQL_DIR/'bronze/check_existing_weather.sql'
+    result = con.execute(query.read_text(),[station_code,run_date]).fetchone()
+    return True if result else False
+
 def check_existing_parse(con:DuckDBPyConnection,run_date:date)->bool:
     query= SQL_DIR/'silver/check_existing_parse.sql'
     result = con.execute(query.read_text(),[run_date]).fetchone()
@@ -39,8 +45,8 @@ def get_min_max_date(con:DuckDBPyConnection,run_date:date)->tuple:
     result =  con.execute("""
     SELECT MIN(date::DATE), MAX(date::DATE)
     FROM read_parquet(?)
-    """, [path[0]]).fetchone()
-    if result is None:
+    """, [path[0]]).fetchone() #will return (None,None) on filure
+    if result is None or result[0] is None:
         raise ValueError(f"No rows found in parquet file {path[0]}")
     
     return result
@@ -58,8 +64,8 @@ def get_station_coords(con:DuckDBPyConnection,run_date:date)->list[tuple]:
     if not path:
         raise ValueError(f"No path found check for run_date={run_date} exists")
     result =  con.execute("""
-        SELECT * FROM read_parquet(?)   
-    """,[path[0]]).fetchall()
+        SELECT station_code, longitude, latitude FROM read_parquet(?)   
+    """,[path[0]]).fetchall() #return [] on failure
     if not result:
         raise ValueError(f"No rows found in parquet file {path[0]}")
     return result

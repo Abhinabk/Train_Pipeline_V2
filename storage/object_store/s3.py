@@ -20,13 +20,14 @@ def get_client():
     return _client
 
 
-def put_object(bucket: str, key: str, content: str | bytes)->str:
+def put_object(bucket: str, key: str, content: str | bytes,content_type:str)->str:
     client = get_client()
     try:
         client.put_object(
             Bucket=bucket,
             Key=key,  # file name
             Body=content,
+            ContentType=content_type
         )
         return f"s3://{bucket}/{key}"
 
@@ -113,12 +114,16 @@ def get_object_from_uri(uri: str) -> str:
     return get_object(bucket, key)
 
 def save_html_s3(bucket: str, file_name: str, content: str) -> str:
-    return put_object(bucket, file_name, content)
+    return put_object(bucket, file_name, content,content_type="text/html")
 
+def save_json_s3(bucket: str, file_name: str, content: str) -> str:
+    return put_object(bucket, file_name, content,content_type="application/json")
 
 def save_parquet_s3(bucket: str, file_name: str, content: bytes) -> str:
-    return put_object(bucket, file_name, content)
+    return put_object(bucket, file_name, content,content_type="application/octet-stream")
 
+def save_csv_s3(bucket: str, file_name: str, content: str) -> str:
+    return put_object(bucket, file_name, content,content_type="text/csv")
 
 if __name__ == "__main__":
     files = get_files()

@@ -1,14 +1,13 @@
 from datetime import date
 from pprint import pprint
-from time import time
 
 import requests
 
 from ingestion.openmeteo.build_url import build_weather_url
 from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.queries import  get_min_max_date, get_station_coords
-from config.logger import bronze_logger
-def fetch_weather_daily(session:requests.Session,station_code:str,longitude:float,latitude:float,start_date:str,end_date:str)->dict:
+from validators.bronze.open_meteo_return import OpenMeteoDataDaily
+def fetch_weather_daily(session:requests.Session,station_code:str,longitude:float,latitude:float,start_date:str,end_date:str)->OpenMeteoDataDaily:
     '''return the station_code with a json of weather variables'''
     url = build_weather_url()
     params = {
@@ -26,17 +25,17 @@ def fetch_weather_daily(session:requests.Session,station_code:str,longitude:floa
     } #values are indexed by date so returns a data for index implicitly defaults to utc bucketing
     response = session.get(url=url,params=params) 
     response.raise_for_status() #will raise http code if error None if success
-    return {
-        "status_code": response.status_code,
-        "station_code":station_code,
-        "weather_daily":response.json()['daily']
-    }
-
+    data = OpenMeteoDataDaily(
+        status_code=response.status_code,
+        station_code = station_code,
+        weather_data=response.json()['daily']
+    )
+    return data 
 if __name__ == "__main__":
     with get_connection() as con:
         print(con.execute("SELECT current_database()").fetchone())
         min_max = get_min_max_date(con,run_date=date.today())
-        station_code,station_name,longitude,latitude  = get_station_coords(con,date.today())[0]
+        station_code,longitude,latitude  = get_station_coords(con,date.today())[0]
     if min_max:
         min_date,max_date = min_max
     with requests.Session() as session:

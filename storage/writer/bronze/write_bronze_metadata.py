@@ -22,7 +22,7 @@ def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMe
             file_path   = EXCLUDED.file_path,
             response_status_code = EXCLUDED.response_status_code,
             success = EXCLUDED.success,
-            error_message   = EXCLUDED.error_message,
+            error_message   = EXCLUDED.error_message
         """,
         [   
             metadata.run_date,
@@ -40,22 +40,20 @@ def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetada
 
     con.execute(
         """
-        INSERT INTO bronze.train_metadata (
+        INSERT INTO bronze.open_meteo_metadata (
             run_date,
-            station_code
+            station_code,
             file_path,
             response_status_code,
             success,
             error_message
         )
-        VALUES (?, ?, ?, ?, ?, ?,)
+        VALUES (?, ?, ?, ?, ?, ?)
         ON CONFLICT(station_code,run_date) DO UPDATE SET
-            train_name  = EXCLUDED.train_name,
-            source_url  = EXCLUDED.source_url,
-            file_path   = EXCLUDED.file_path,
+            file_path = EXCLUDED.file_path,
             response_status_code = EXCLUDED.response_status_code,
             success = EXCLUDED.success,
-            error_message   = EXCLUDED.error_message,
+            error_message = EXCLUDED.error_message
         """,
         [   
             metadata.run_date,

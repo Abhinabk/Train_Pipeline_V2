@@ -1,4 +1,4 @@
 SELECT * from bronze.train_metadata
 WHERE train_no = ?
 and success = True
-and created_at::DATE = ?
+and run_date::DATE = ?

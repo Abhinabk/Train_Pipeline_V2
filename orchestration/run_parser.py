@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 from duckdb import DuckDBPyConnection
 import pandas as pd
+from config.settings import S3_PREFIX_SILVER_TRAIN
 from parsing.get_fare import fare_details
 from parsing.get_route import route_order
 from parsing.get_station_delay import station_delay
@@ -43,21 +44,21 @@ def write_station_delay(all_station_delay:list[dict|None],run_date:date)->str|No
     if not all_station_delay:
         return None
     df = pd.DataFrame(all_station_delay)
-    return write_parquet_to_s3(df,'station_delay',run_date)
+    return write_parquet_to_s3(df,'station_delay','station_delay',run_date,S3_PREFIX_SILVER_TRAIN)
 
 @task(name="write-route",on_failure=[on_task_failure])
 def write_route(all_route:list[dict|None],run_date:date)->str|None:
     if not all_route:
         return None
     df = pd.DataFrame(all_route)
-    return write_parquet_to_s3(df,'route_order',run_date)
+    return write_parquet_to_s3(df,'route_order','route_order',run_date,S3_PREFIX_SILVER_TRAIN)
 
 @task(name="write-fare",on_failure=[on_task_failure])
 def write_fare(all_fare:list[dict|None],run_date:date)->str|None:
     if not all_fare:
         return None  
     df = pd.DataFrame(all_fare)
-    return write_parquet_to_s3(df,'fare_details',run_date)  
+    return write_parquet_to_s3(df,'fare_details','fare_details',run_date,S3_PREFIX_SILVER_TRAIN)  
 
 @task(name="write-running-days",on_failure=[on_task_failure])
 def write_running_days(all_running_days:list[dict|None],run_date:date)->str|None:
@@ -65,7 +66,7 @@ def write_running_days(all_running_days:list[dict|None],run_date:date)->str|None
         return
     
     df = pd.DataFrame(all_running_days)
-    return write_parquet_to_s3(df,'all_running_days',run_date)  
+    return write_parquet_to_s3(df,'all_running_days','all_running_days',run_date,S3_PREFIX_SILVER_TRAIN)  
 
 @flow(name="parse-all-trains", on_failure=[on_flow_failure])
 def parse_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):

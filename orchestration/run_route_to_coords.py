@@ -19,7 +19,7 @@ from validators.reference.metadata import ReferenceMetadata
 @task(name="write-route-coords")
 def write_route_coords(rows: list[dict], file_name: str, run_date: date):
     df = pd.DataFrame(rows)
-    key =  write_parquet_to_s3(df,file_name,run_date,prefix='reference')
+    key =  write_parquet_to_s3(df,file_name,file_name,run_date,prefix='reference')
     return key 
 
 @flow(name="all-route-to-coords")
