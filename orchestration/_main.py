@@ -2,6 +2,7 @@ from datetime import datetime
 
 from dotenv import load_dotenv
 from orchestration.run_ingestion import ingest_all_trains
+from orchestration.run_open_meteo_ingestion import ingest_all_stations
 from orchestration.run_parser import parse_all_trains
 from orchestration.run_route_to_coords import write_route_coords_all
 from storage.duckdb.duckdb_con import get_connection
@@ -17,6 +18,16 @@ if __name__ == "__main__":
         action="store_true",
         help="forced reparse for same day run"
     )
+    parser.add_argument(
+        "-fi","--force-ingest",
+        action="store_true",
+        help="forced ingestion for same day run"
+    )
+    parser.add_argument(
+        "-fr","--force-reference",
+        action="store_true",
+        help="forced to rerun reference"
+    )
 
     parser.add_argument(
         "-p", "--parser-only",
@@ -29,8 +40,9 @@ if __name__ == "__main__":
         run_date = datetime.today().date()
         init_db(con)
         if args.parser_only:
-            parse_all_trains(con,run_date,force=args.force_parse) #parallel parser
+            parse_all_trains(con,run_date,force=args.force_parse) #parallel parser   
         else:
-            ingest_all_trains(con,run_date,force=args.force_parse) #sequential scraper
+            ingest_all_trains(con,run_date,force=args.force_ingest) #sequential scraper
             parse_all_trains(con,run_date,force=args.force_parse) #parallel parser
-            write_route_coords_all(con,run_date) # creates the refernce table
+            write_route_coords_all(con,run_date,force=args.force_reference) # creates the refernce table
+            ingest_all_stations(con,run_date,force= args.force_ingest) # fetches the weather per station

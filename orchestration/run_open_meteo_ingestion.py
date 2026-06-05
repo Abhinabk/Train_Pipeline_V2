@@ -9,11 +9,10 @@ from config.logger import bronze_logger
 from config.settings import S3_BUCKET, S3_PREFIX_BRONZE_WEATHER
 from ingestion.openmeteo.get_weather import fetch_weather_daily
 from storage.duckdb.duckdb_con import get_connection
-from storage.duckdb.queries import get_min_max_date, get_station_coords
+from storage.duckdb.queries import check_existing_weather, get_min_max_date, get_station_coords
 from storage.object_store.s3 import save_json_s3
 from storage.writer.bronze.write_bronze_metadata import insert_open_meteo_metadata
 from validators.bronze.metadata import OpenMeteoMetadata
-from validators.bronze.open_meteo_return import OpenMeteoDataDaily
 
 
 def is_retryable(task, task_run, state) -> bool:
@@ -41,7 +40,7 @@ def is_retryable(task, task_run, state) -> bool:
 )  # 10*pow(2,i) 10,20,40 ..
 def ingest_per_station(
     station_code: str, longitude: float, latitude: float, start_date: str, end_date: str
-) -> OpenMeteoDataDaily:
+):
     with requests.Session() as session:
         result = fetch_weather_daily(
             session,
@@ -55,12 +54,20 @@ def ingest_per_station(
 
 
 @flow(name="ingest-all-stations", task_runner=ThreadPoolTaskRunner(max_workers=3))  # type: ignore
-def ingest_all_stations(con: DuckDBPyConnection, run_date: date):
+def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False):
+
     min_max = get_min_max_date(con, run_date)
-    station = get_station_coords(con, run_date)[:1]
+    station = get_station_coords(con, run_date)
     min_date, max_date = min_max
     if not station:
         return
+    if not force:
+        station = [s for s in station if not check_existing_weather(con,s[0],run_date)] #s[0] is the station_code
+        #fetches only those stations that dosen't return True 
+        if not station:
+            bronze_logger.log('SKIP',f" aready fetched all stations for {run_date}")
+            return
+    
     station_code, longitude, latitude = zip(*station)  # unzips into indiviual column
     prefect_states = ingest_per_station.map(
         station_code,

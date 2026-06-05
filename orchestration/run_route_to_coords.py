@@ -8,7 +8,7 @@ from config.settings import REFERENCE_JSON_S3_KEY
 from parsing.station_coordinates.get_station_name_coordinates import station_names_coordinates
 from parsing.station_coordinates.map_route_to_coordinates import route_to_coords
 from storage.duckdb.duckdb_con import get_connection
-from storage.duckdb.queries import get_route_path
+from storage.duckdb.queries import check_existing_reference, get_route_path
 from storage.readers.load_parquet import load_distinct_route_stations_parquet
 from prefect import flow,task
 
@@ -23,7 +23,11 @@ def write_route_coords(rows: list[dict], file_name: str, run_date: date):
     return key 
 
 @flow(name="all-route-to-coords")
-def write_route_coords_all(con:DuckDBPyConnection,run_date:date):
+def write_route_coords_all(con:DuckDBPyConnection,run_date:date,force:bool=False):
+    if not force and check_existing_reference(con, run_date):
+        generic_logger.log("SKIP","reference already build for {run}")
+        return
+
     ref_coordinates = station_names_coordinates(str(REFERENCE_JSON_S3_KEY)) 
     path = get_route_path(con,run_date)
     if path is None:
