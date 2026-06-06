@@ -2,7 +2,7 @@ from datetime import datetime
 
 from dotenv import load_dotenv
 from orchestration.run_ingestion import ingest_all_trains
-from orchestration.weather import ingest_all_stations
+from orchestration.weather.run_weather import ingest_all_stations
 from orchestration.run_parser import parse_all_trains
 from orchestration.run_route_to_coords import write_route_coords_all
 from storage.duckdb.duckdb_con import get_connection

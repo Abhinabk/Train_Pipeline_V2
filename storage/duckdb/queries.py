@@ -44,7 +44,12 @@ def get_route_path(con: DuckDBPyConnection, run_date: date) -> str | None:
     if result:
         return result[0]
 
-
+def get_last_weather_date(con: DuckDBPyConnection, station_code:str)->date | None:
+    query = SQL_DIR / "bronze/check_max_date.sql"
+    result =  con.execute(query.read_text(), [station_code]).fetchone()
+    if result is None or result[0] is None:
+        return
+    return result[0]
 def get_min_max_date(con: DuckDBPyConnection, run_date: date) -> tuple:
     """return a tuple containing (min_date,max_date)"""
     path = con.execute(
