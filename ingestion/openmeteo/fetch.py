@@ -23,7 +23,7 @@ def fetch_weather_daily(session:requests.Session,station_code:str,longitude:floa
         "wind_gusts_10m_max", 
         "weather_code"],
     } #values are indexed by date so returns a data for index implicitly defaults to utc bucketing
-    response = session.get(url=url,params=params) 
+    response = session.get(url=url,params=params,timeout=40) 
     response.raise_for_status() #will raise http code if error None if success
     data = OpenMeteoDataDaily(
         status_code=response.status_code,
@@ -39,6 +39,6 @@ if __name__ == "__main__":
     if min_max:
         min_date,max_date = min_max
     with requests.Session() as session:
-        data = fetch_weather_daily(session,longitude,latitude,min_date,max_date,station_code)
+        data = fetch_weather_daily(session,station_code,longitude,latitude,min_date,max_date)
         pprint(data)
             

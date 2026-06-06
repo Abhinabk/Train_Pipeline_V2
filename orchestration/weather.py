@@ -54,7 +54,7 @@ def ingest_per_station(
 
 
 @flow(name="ingest-all-stations", task_runner=ThreadPoolTaskRunner(max_workers=3))  # type: ignore
-def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False):
+def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False,only_station:list[str]|None=None):
 
     try:
         station = get_station_coords(con, run_date)
@@ -67,7 +67,13 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
     except ValueError:
         bronze_logger.warning(f" No dates found for {run_date}")
         return
-
+    
+    if only_station and force: #have to run with force flag if not force then next block runs
+        station = [s for s in station if s[0] in only_station] #s[0] is the station_code column
+        if not station:
+            bronze_logger.warning(f"Station {only_station} not found for {run_date}")
+            return
+        
     if not force:
         station = [s for s in station if not check_existing_weather(con,s[0],run_date)] #s[0] is the station_code column
         #fetches only those stations that dosen't return True 
@@ -90,11 +96,17 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
     for code, state in zip(station_code, prefect_states):
         if state.is_completed():
             r = state.result()  # actual value returned by the task
-            file_path = save_json_s3(
-                S3_BUCKET,
-                f"{S3_PREFIX_BRONZE_WEATHER}/{run_date}/{code}.json",
-                content=json.dumps(r.weather_data),
-            )
+            try:
+                file_path = save_json_s3(
+                    S3_BUCKET,
+                    f"{S3_PREFIX_BRONZE_WEATHER}/{run_date}/{code}.json",
+                    content=json.dumps(r.weather_data),
+                )
+            except RuntimeError as e:
+                rows.append((run_date, None, None, code, None,
+                             None, False, f"S3 write failed: {e}"))
+                bronze_logger.warning(f"S3 write failed for {code}: {e}")
+                continue 
             metadata = OpenMeteoMetadata(
                 run_date=run_date,
                 weather_start=min_date,
@@ -119,7 +131,7 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
             )
             
             bronze_logger.warning(f"Failed {code} weather:{state.message}")
-            
+
         #all completed metadata gets added 
         rows.append((metadata.run_date, metadata.weather_start, metadata.weather_end, metadata.station_code,
                     metadata.file_path,
@@ -131,4 +143,4 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
 if __name__ == "__main__":
     run_date = date.today()
     with get_connection() as con:
-        ingest_all_stations(con, run_date)
+        ingest_all_stations(con, run_date,only_station=['BLPR'],force=True)
