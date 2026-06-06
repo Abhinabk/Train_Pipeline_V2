@@ -14,6 +14,11 @@ load_dotenv()
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument(
+        "-f","--force",
+        action="store_true",
+        help="forced run of the pipeline"
+    )
+    parser.add_argument(
         "-fp","--force-parse",
         action="store_true",
         help="forced reparse for same day run"
@@ -22,6 +27,11 @@ if __name__ == "__main__":
         "-fi","--force-ingest",
         action="store_true",
         help="forced ingestion for same day run"
+    )
+    parser.add_argument(
+        "-fw","--force-weather",
+        action="store_true",
+        help="forced weather api for same day run"
     )
     parser.add_argument(
         "-fr","--force-reference",
@@ -39,10 +49,13 @@ if __name__ == "__main__":
     with get_connection() as con: 
         run_date = datetime.today().date()
         init_db(con)
-        if args.parser_only:
-            parse_all_trains(con,run_date,force=args.force_parse) #parallel parser   
-        else:
-            ingest_all_trains(con,run_date,force=args.force_ingest) #sequential scraper
+        if args.force:
+            ingest_all_trains(con,run_date,force=True) #sequential scraper
+            parse_all_trains(con,run_date,force=True) #parallel parser
+            write_route_coords_all(con,run_date,force=True) # creates the refernce table
+            ingest_all_stations(con,run_date,force= True) # fetches the weather per station   
+        else: 
+            ingest_all_trains(con,run_date, force=args.force_ingest) #sequential scraper
             parse_all_trains(con,run_date,force=args.force_parse) #parallel parser
             write_route_coords_all(con,run_date,force=args.force_reference) # creates the refernce table
-            ingest_all_stations(con,run_date,force= args.force_ingest) # fetches the weather per station
+            ingest_all_stations(con,run_date,force=args.force_weather) # fetches the weather per station

@@ -36,9 +36,9 @@ def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMe
         ],
     )
 
-def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetadata):
+def insert_open_meteo_metadata(con:DuckDBPyConnection, rows:list[tuple]):
 
-    con.execute(
+    con.executemany(
         """
         INSERT INTO bronze.open_meteo_metadata (
             run_date,
@@ -59,14 +59,5 @@ def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetada
             success = EXCLUDED.success,
             error_message = EXCLUDED.error_message
         """,
-        [   
-            metadata.run_date,
-            metadata.weather_start,
-            metadata.weather_end,
-            metadata.station_code,
-            metadata.file_path,
-            metadata.response_status_code,
-            metadata.success,
-            metadata.error_message,
-        ],
+       rows,
     )

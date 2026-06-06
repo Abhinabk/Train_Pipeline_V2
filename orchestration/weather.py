@@ -56,19 +56,26 @@ def ingest_per_station(
 @flow(name="ingest-all-stations", task_runner=ThreadPoolTaskRunner(max_workers=3))  # type: ignore
 def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False):
 
-    min_max = get_min_max_date(con, run_date)
-    station = get_station_coords(con, run_date)
-    min_date, max_date = min_max
-    if not station:
+    try:
+        station = get_station_coords(con, run_date)
+    except ValueError:
+        bronze_logger.warning(f" No station found for {run_date}")
         return
+    try:
+        min_max = get_min_max_date(con, run_date)
+        min_date, max_date = min_max
+    except ValueError:
+        bronze_logger.warning(f" No dates found for {run_date}")
+        return
+
     if not force:
-        station = [s for s in station if not check_existing_weather(con,s[0],run_date)] #s[0] is the station_code
+        station = [s for s in station if not check_existing_weather(con,s[0],run_date)] #s[0] is the station_code column
         #fetches only those stations that dosen't return True 
         if not station:
             bronze_logger.log('SKIP',f" aready fetched all stations for {run_date}")
             return
     
-    station_code, longitude, latitude = zip(*station)  # unzips into indiviual column
+    station_code, longitude, latitude = zip(*station)  # unzips into indiviual column/tuple
     prefect_states = ingest_per_station.map(
         station_code,
         longitude,
@@ -78,7 +85,8 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
         return_state=True,
     )  # returns the results  wrapped in prefect state
     # e.g Completed(data={"status_code": 200, "station_code": "NDLS", "weather_data": [...]})
-
+   
+    rows = []
     for code, state in zip(station_code, prefect_states):
         if state.is_completed():
             r = state.result()  # actual value returned by the task
@@ -96,7 +104,7 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
                 response_status_code=r.status_code,
                 success=True,
                 error_message=None
-            )
+            ) 
             bronze_logger.success(f"Fetched {code} weather")
         else:
             metadata = OpenMeteoMetadata(
@@ -109,12 +117,18 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
                 success=False,
                 error_message=str(state.message)
             )
+            
             bronze_logger.warning(f"Failed {code} weather:{state.message}")
+            
+        #all completed metadata gets added 
+        rows.append((metadata.run_date, metadata.weather_start, metadata.weather_end, metadata.station_code,
+                    metadata.file_path,
+                    metadata.response_status_code, metadata.success, metadata.error_message))
+    if rows:
+        insert_open_meteo_metadata(con, rows) #now a single trip to insert all 
 
-        insert_open_meteo_metadata(con, metadata)
 
-
-# if __name__ == "__main__":
-#     run_date = date.today()
-#     with get_connection() as con:
-#         ingest_all_stations(con, run_date)
+if __name__ == "__main__":
+    run_date = date.today()
+    with get_connection() as con:
+        ingest_all_stations(con, run_date)
