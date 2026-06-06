@@ -17,7 +17,7 @@ from duckdb import DuckDBPyConnection
 from validators.bronze.metadata import BronzeTrainMetadata
 
 
-@task(retries=2,retry_delay_seconds=20,cache_policy=NO_CACHE)
+@task(retries=2,retry_delay_seconds=20,cache_policy=NO_CACHE,timeout_seconds=30)
 def run_train_ingestion(session:requests.Session,con:DuckDBPyConnection,train_no:str,train_name:str,run_date:date,force:bool):
 
     if not force and check_existing_fetch(con,train_no,run_date):
@@ -62,9 +62,8 @@ def ingest_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):
     train_config_path = TRAINS_CSV
     session = create_session()
     df = pd.read_csv(train_config_path)
-    # type: ignore
-    for rows in (df.itertuples(index=False)): # type: ignore
-        train_no = rows.number # type: ignore
-        train_name = rows.name  # type: ignore
+    for rows in (df.itertuples(index=False)):
+        train_no = rows.number 
+        train_name = rows.name  
         run_train_ingestion(session,con,str(train_no),str(train_name),run_date,force)
     bronze_logger.success(f"Ingestion complete: {len(df)} trains processed")

@@ -23,7 +23,7 @@ def on_task_failure(task, task_run, state):
     silver_logger.error(f"Task {task.name} failed on run {task_run.name}: {state.message}")
 
 def on_flow_failure(flow, flow_run, state):
-    silver_logger.error(f"Flow {flow.name} failed: {state.message}")
+    silver_logger.error(f"Flow {flow.name} failed on flow {flow_run.name}: {state.message}")
 
 @task(name='fetch-from-s3-and-parse-a-train', retries=2,retry_delay_seconds=10,on_failure=[on_task_failure])
 def parse_train(train_no:str,s3_uri:str)->dict:
@@ -93,15 +93,6 @@ def parse_all_trains(con:DuckDBPyConnection,run_date:date,force:bool=False):
         all_route.extend(r['route'])
         all_fare.extend(r['fare_details'])
         all_running_days.extend(r['running_days'])
-
-        # for value in r['station_delay']:
-        #     all_station_delay.append(value)
-        # for value in r['route']:
-        #     all_route.append(value)
-        # for value in r['fare_details']:
-        #     all_fare.append(value)
-        # for value in r['running_days']:
-        #     all_running_days.append(value)
 
     station_path =write_station_delay(all_station_delay,run_date)
     fare_path = write_fare(all_fare,run_date)
