@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 import json
 from duckdb import DuckDBPyConnection
 from prefect import flow, task, unmapped
@@ -7,7 +7,7 @@ from prefect.tasks import exponential_backoff
 import requests
 from config.logger import bronze_logger
 from config.settings import S3_BUCKET, S3_PREFIX_BRONZE_WEATHER
-from ingestion.openmeteo.get_weather import fetch_weather_daily
+from ingestion.openmeteo.fetch import fetch_weather_daily
 from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.queries import check_existing_weather, get_min_max_date, get_station_coords
 from storage.object_store.s3 import save_json_s3
@@ -89,6 +89,8 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
             )
             metadata = OpenMeteoMetadata(
                 run_date=run_date,
+                weather_start=min_date,
+                weather_end=max_date,
                 station_code=code,
                 file_path=file_path,
                 response_status_code=r.status_code,
@@ -99,6 +101,8 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
         else:
             metadata = OpenMeteoMetadata(
                 run_date=run_date,
+                weather_start=None,
+                weather_end=None,
                 station_code=code,
                 file_path=None,
                 response_status_code=None,
@@ -110,7 +114,7 @@ def ingest_all_stations(con: DuckDBPyConnection, run_date: date,force:bool=False
         insert_open_meteo_metadata(con, metadata)
 
 
-if __name__ == "__main__":
-    run_date = date.today()
-    with get_connection() as con:
-        ingest_all_stations(con, run_date)
+# if __name__ == "__main__":
+#     run_date = date.today()
+#     with get_connection() as con:
+#         ingest_all_stations(con, run_date)

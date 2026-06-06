@@ -4,6 +4,8 @@ from pydantic import BaseModel
 
 class OpenMeteoMetadata(BaseModel):
     run_date: date
+    weather_start: date|None
+    weather_end: date|None
     station_code: str
     file_path: str|None
     response_status_code: int|None

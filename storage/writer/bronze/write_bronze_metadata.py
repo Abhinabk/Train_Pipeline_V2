@@ -42,14 +42,18 @@ def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetada
         """
         INSERT INTO bronze.open_meteo_metadata (
             run_date,
+            weather_start,
+            weather_end,
             station_code,
             file_path,
             response_status_code,
             success,
             error_message
         )
-        VALUES (?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(station_code,run_date) DO UPDATE SET
+            weather_start = EXCLUDED.weather_start,
+            weather_end = EXCLUDED.weather_end,
             file_path = EXCLUDED.file_path,
             response_status_code = EXCLUDED.response_status_code,
             success = EXCLUDED.success,
@@ -57,6 +61,8 @@ def insert_open_meteo_metadata(con:DuckDBPyConnection, metadata: OpenMeteoMetada
         """,
         [   
             metadata.run_date,
+            metadata.weather_start,
+            metadata.weather_end,
             metadata.station_code,
             metadata.file_path,
             metadata.response_status_code,

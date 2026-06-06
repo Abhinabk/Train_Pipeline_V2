@@ -20,6 +20,8 @@ CREATE SEQUENCE IF NOT EXISTS bronze.open_meteo_metadata_seq START 1;
 CREATE TABLE IF NOT EXISTS bronze.open_meteo_metadata(
     metadata_id BIGINT PRIMARY KEY DEFAULT nextval('bronze.open_meteo_metadata_seq'),
     run_date DATE,
+    weather_start DATE,
+    weather_end DATE,
     station_code VARCHAR,
     file_path VARCHAR,
     response_status_code INT,
@@ -29,4 +31,5 @@ CREATE TABLE IF NOT EXISTS bronze.open_meteo_metadata(
     UNIQUE (station_code, run_date) --run date couse just staion_code will crete conflict
                                     -- for different day also
 );
+
 
