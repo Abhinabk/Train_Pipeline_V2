@@ -53,24 +53,24 @@ def ingest_per_station(
 @flow(name="ingest-all-stations", task_runner=ThreadPoolTaskRunner(max_workers=3))  # type: ignore
 def ingest_all_stations(con: DuckDBPyConnection, run_date: date,backfill:bool=False,force:bool=False,only_station:list[str]|None=None):
 
-    try:
-        station = get_station_coords(con, run_date)
-    except ValueError:
-        bronze_logger.warning(f" No station found for {run_date}")
-        return
-    try:
-        min_max = get_min_max_date(con, run_date)
-        min_date, max_date = min_max
-    except ValueError:
-        bronze_logger.warning(f" No dates found for {run_date}")
-        return
+    station = get_station_coords(con)
+    min_max = get_min_max_date(con, run_date)
+    min_date, max_date = min_max
     
-    if only_station and force: #have to run with force flag if not force then next block runs
+    if only_station and force: #have to run single stations with force flag if not force then next block runs
         station = [s for s in station if s[0] in only_station] #s[0] is the station_code column
         if not station:
             bronze_logger.warning(f"Station {only_station} not found for {run_date}")
             return
-    
+    if backfill:
+        mode = "BACKFILL"
+    elif force:
+        targets = only_station or "all"
+        mode = f"FORCE (stations={targets})"
+    else:
+        mode = "INCREMENTAL"
+    bronze_logger.info(f"[{mode}] run_date={run_date} | min_date={min_date}")
+
     end_date = run_date 
     work = [] # (code,long,lat,start_date,end_date)
     for code,lon,lat in station:

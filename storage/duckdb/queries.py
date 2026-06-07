@@ -44,12 +44,15 @@ def get_route_path(con: DuckDBPyConnection, run_date: date) -> str | None:
     if result:
         return result[0]
 
-def get_last_weather_date(con: DuckDBPyConnection, station_code:str)->date | None:
+
+def get_last_weather_date(con: DuckDBPyConnection, station_code: str) -> date | None:
     query = SQL_DIR / "bronze/check_max_date.sql"
-    result =  con.execute(query.read_text(), [station_code]).fetchone()
+    result = con.execute(query.read_text(), [station_code]).fetchone()
     if result is None or result[0] is None:
         return
     return result[0]
+
+
 def get_min_max_date(con: DuckDBPyConnection, run_date: date) -> tuple:
     """return a tuple containing (min_date,max_date)"""
     path = con.execute(
@@ -77,7 +80,7 @@ def get_min_max_date(con: DuckDBPyConnection, run_date: date) -> tuple:
     return result
 
 
-def get_station_coords(con: DuckDBPyConnection, run_date: date) -> list[tuple]:
+def get_station_coords(con: DuckDBPyConnection) -> list[tuple]:
     """
     return list of tuple containing [(station_code,station_name,log,latitude),...]
     for run_date provided make sure reference ran on that day
@@ -86,12 +89,12 @@ def get_station_coords(con: DuckDBPyConnection, run_date: date) -> list[tuple]:
         """
         SELECT matched_key
         FROM reference.metadata
-        WHERE run_date = ?
+        WHERE run_date = (select MAX(run_date) from train_pipeline.reference.metadata)
     """,
-        [run_date],
     ).fetchone()
+    # reference dosent run every day so had to get max will return the latest date
     if not path:
-        raise ValueError(f"No path found check for run_date={run_date} exists")
+        raise ValueError("No path found")
     result = con.execute(
         """
         SELECT station_code, longitude, latitude FROM read_parquet(?)   
