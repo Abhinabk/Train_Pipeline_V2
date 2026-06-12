@@ -9,7 +9,7 @@ from storage.duckdb.duckdb_con import get_connection
 from storage.duckdb.init_db import init_db
 from argparse import ArgumentParser 
 
-load_dotenv() 
+load_dotenv(override=True) 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
