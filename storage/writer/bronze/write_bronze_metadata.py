@@ -1,6 +1,6 @@
 from duckdb import DuckDBPyConnection
 
-from validators.bronze.metadata import BronzeTrainMetadata,OpenMeteoMetadata
+from validators.bronze.metadata import BronzeTrainMetadata
 def insert_bronze_train_metadata(con:DuckDBPyConnection, metadata: BronzeTrainMetadata):
 
     con.execute(
