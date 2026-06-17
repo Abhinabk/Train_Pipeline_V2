@@ -1,0 +1,7 @@
+sources:
+    - name: train_pipeline 
+      schema: bronze 
+      tables:
+        - name: weather
+          identifier: weather 
+

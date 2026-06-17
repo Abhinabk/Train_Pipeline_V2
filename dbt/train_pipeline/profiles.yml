@@ -1,0 +1,9 @@
+# file not in gitignore carful no to put any keys here dbt will check in .env
+train_pipeline:
+  outputs:
+    dev:
+      type: duckdb
+      path: "md:train_pipeline"
+      threads: 4
+
+  target: dev
