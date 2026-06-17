@@ -1,4 +1,5 @@
-with stg_station_dealy as (select *
+with stg_station_dealy as (
+    select *
     from read_parquet('s3://train-pipeline-v2/silver/station_delay/*/*.parquet')
 ),
 final as (
