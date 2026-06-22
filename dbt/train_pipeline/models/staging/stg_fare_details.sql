@@ -6,7 +6,7 @@ with stg_fare_details as (
 
 final as (
     select 
-        current_timestamp as timestamp,
+        DISTINCT
         train_no,
         "class",
         "Adult (Normal)",
@@ -18,5 +18,6 @@ final as (
         "Senior Male (Normal)",
         "Senior Male (Tatkal)"
     from stg_fare_details
-    )
+)
+--needed distinct as causing duplication dute to multiple parquet files 
 select * from final

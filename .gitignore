@@ -46,3 +46,7 @@ temp/
 storage/data
 __pycache__/
 *.pyc
+
+#dbt
+dbt/train_pipeline/target/
+dbt/logs/

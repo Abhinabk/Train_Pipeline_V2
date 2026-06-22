@@ -5,8 +5,9 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_trains')
-              field: train_key 
+              arguments:
+                to: ref('dim_trains')
+                field: train_key 
   - name: bridge_train_route
     tests:
       - dbt_utils.unique_combination_of_columns:
@@ -20,15 +21,17 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_trains')
-              field: train_key
-              
+              arguments:
+                to: ref('dim_trains')
+                field: train_key
+                
       - name: station_key
         tests:
           - not_null
           - relationships:
-              to: ref('dim_stations')
-              field: station_key
+              arguments:
+                to: ref('dim_stations')
+                field: station_key
 
 
       
