@@ -5,8 +5,8 @@ with stg_running_days as (
 final as (
     select
         current_timestamp as timestamp,
-        train_no,
-        "days"
+        train_no::varchar as train_no,
+        "days"::VARCHAR as "days"
     from 
         stg_running_days
 )

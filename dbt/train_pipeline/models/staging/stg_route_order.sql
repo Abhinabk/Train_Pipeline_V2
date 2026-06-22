@@ -5,10 +5,10 @@ with stg_route_order as (
 final as (
     select
         current_timestamp as timestamp,
-        train_no,
-        station_code,
-        station_name,
-        "order" --reserved keyword
+        train_no::varchar as train_no,
+        station_code::varchar as station_code,
+        station_name::varchar as station_name,
+        "order"::INTEGER as "order"
     from stg_route_order
 )
 select * from final

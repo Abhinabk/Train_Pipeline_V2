@@ -5,10 +5,10 @@ with stg_coords as(
 final as (
     select 
         current_timestamp as timestamp,
-        station_code,
-        station_name,
-        longitude,
-        latitude
+        station_code::varchar as station_code,
+        station_name::varchar as station_name,
+        longitude::DOUBLE as longitude,
+        latitude::DOUBLE as latitude
     from stg_coords
 )
 select * from final

@@ -5,10 +5,10 @@ with stg_station_dealy as (
 final as (
     select
         current_timestamp as timestamp,
-        train_no,
-        date,
-        station_code,
-        delay
+        train_no::varchar as train_no,
+        date::DATE as "date",
+        station_code::VARCHAR as station_code,
+        delay::DOUBLE as delay
     from stg_station_dealy
 )
 select * from final
