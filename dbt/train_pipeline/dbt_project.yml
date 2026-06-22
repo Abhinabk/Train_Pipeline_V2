@@ -29,15 +29,24 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
+on-run-start:
+  - "create schema if not exists silver"
+  - "create schema if not exists gold"
+
 models:
   train_pipeline:
     staging:
       +schema: silver
       +materialized: view
+    intermediate:
+      +schema: silver 
+      +materialized: view
+    marts: 
+      +schema: gold 
+      +materialized: table
 
       
 seeds:
   train_pipeline:
-    +materialized: seed 
     +schema: reference
       

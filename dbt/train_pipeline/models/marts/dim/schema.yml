@@ -1,0 +1,28 @@
+models:
+  - name: dim_stations
+    constraints:
+      - type: primary_key
+        columns: [station_key] 
+    columns:
+      - name: station_key
+        tests: 
+          - unique 
+          - not_null
+  - name: dim_trains
+    constraints:
+      - type: primary_key 
+        columns: [train_key]
+    columns:
+      - name: train_key
+        tests:
+          - unique
+          - not_null
+  - name: dim_date
+    constraints:
+      - type: primary_key 
+        columns: [date_key]
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null

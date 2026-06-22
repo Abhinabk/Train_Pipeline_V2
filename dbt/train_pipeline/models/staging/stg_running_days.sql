@@ -6,7 +6,7 @@ final as (
     select
         current_timestamp as timestamp,
         train_no::varchar as train_no,
-        "days"::VARCHAR as "days"
+        "days"
     from 
         stg_running_days
 )
