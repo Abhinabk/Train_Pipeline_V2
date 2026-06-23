@@ -3,7 +3,7 @@ train_pipeline:
   outputs:
     dev:
       type: duckdb
-      path: "md:train_pipeline"
+      path: "md:train_pipeline?motherduck_token={{ env_var('MOTHERDUCK_TOKEN') }}"
       threads: 4
 
   target: dev

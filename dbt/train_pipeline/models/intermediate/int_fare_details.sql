@@ -1,4 +1,4 @@
-{# with fare_details as (
+with fare_details as (
     select
         train_no,
         class,
@@ -12,11 +12,29 @@
         replace("Senior Male (Tatkal)", 'Rs ', '')::integer as senior_male_tatkal
     from {{ ref('stg_fare_details') }}
 ),
-with fare_long as (
+fare_long as (
     UNPIVOT fare_details
     on 
-        * except(train_no,class)
+        COLUMNS(* EXCLUDE(train_no,class))
     into
         name passenger
-
-) #}
+        value fare_rs
+),
+booking as (
+    select
+        train_no,
+        class,
+        regexp_extract(passenger,'^(.*)_(normal|tatkal)$',1) as passenger_type,
+        regexp_extract(passenger,'_(normal|tatkal)$',1) as booking_type,
+        fare_rs  
+    from fare_long
+),
+final as (
+    select
+        b.* exclude(train_no),
+        t.train_key 
+    from booking b 
+    join {{ref("dim_trains")}} t
+    on b.train_no = t.train_no
+)
+select * from final

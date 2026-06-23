@@ -11,7 +11,7 @@ select
 
 final as (
     select
-        current_timestamp as timestamp,
+        distinct
         train_no::varchar as train_no,
         date::DATE as "date",
         s.station_code::VARCHAR as station_code,
