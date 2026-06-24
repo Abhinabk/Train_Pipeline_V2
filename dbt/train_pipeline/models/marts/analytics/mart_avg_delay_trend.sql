@@ -10,7 +10,7 @@ with fact_with_dates as (
 select
     full_date,
     round(avg(delay), 2) as avg_delay,
-    round(percentile_cont(0.95) within group (order by delay),2) as p95_delay,
+    round(percentile_cont(0.95) within group (order by delay),2) as p95_delay
 from fact_with_dates
 group by full_date
 order by full_date

@@ -13,5 +13,7 @@ station_delay as (
     join {{ ref('dim_stations') }} s
     on d.station_key = s.station_key
     group by s.station_name
+    order by avg_delay desc
+    limit 10
 )
 select * from station_delay

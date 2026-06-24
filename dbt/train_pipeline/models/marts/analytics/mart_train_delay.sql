@@ -13,6 +13,8 @@ train_delay as (
     join {{ ref('dim_trains') }} t
     on d.train_key = t.train_key
     group by t.train_no
+    order by avg_delay desc
+    limit 10
 )
 select * from train_delay
 
