@@ -22,3 +22,12 @@ final as (
 )
 
 select * from final 
+
+
+select
+    min(date),
+    max(date),
+    count(*)
+from read_parquet(
+'s3://train-pipeline-v2/silver/station_delay/2026-06-21/*.parquet'
+);
