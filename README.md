@@ -58,7 +58,13 @@ dbt/              staging, intermediate, marts (dim / fact / bridge / analytics)
 ```
 
 ## Running it
-
+Need a .env file with
+MOTHERDUCK_TOKEN=
+MOTHERDUCK_DATABASE_NAME=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+S3_BUCKET=
 ```bash
 uv sync
 
