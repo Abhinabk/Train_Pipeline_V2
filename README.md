@@ -11,7 +11,7 @@ Built to practice production-grade data engineering patterns: medallion architec
 - Lands everything in S3, transforms it through bronze → silver → gold, and exposes marts for delay trends, station/train rankings, and weather–delay correlation
 
 ## Architecture
-![[readme_assets/NE pipeline v2.drawio.svg]]
+![NE pipeline architecture](readme_assets/NE_pipeline_v2.drawio.svg)
 
 **Medallion layers**
 
@@ -20,7 +20,9 @@ Built to practice production-grade data engineering patterns: medallion architec
 - **Gold** — denormalized fact and dimension tables (`fact_delay`, `fact_weather`, `fact_fare`, `dim_stations`, `dim_trains`, `dim_date`) plus bridge tables for the train↔station route and running-days many-to-many relationships, feeding analytics marts.
 
 **DIMENSIONAL TABLES**
-![[readme_assets/trian-pipeline-dimensional-modelling.svg]]
+![Dimensional model](readme_assets/trian-pipeline-dimensional-modelling.svg)
+**DASHBOARD**
+![Dashboard](readme_assets/analytics_dashboard.png)
 ## Tech stack
 
 | Layer | Tools |
@@ -33,7 +35,7 @@ Built to practice production-grade data engineering patterns: medallion architec
 | Storage | `AWS S3` 
 | Tooling | `uv`, `Loguru` |
 
-## Engineering decisions worth highlighting
+## Engineering decisions 
 
 - **Idempotent ingestion** via SQL guards (`ON CONFLICT DO UPDATE` on natural keys) and skip-checks against metadata tables, so reruns update rather than duplicate.
 - **Incremental + backfill weather modes** — each station fetches only from its last successful date forward; a backfill flag does a full historical pull.
